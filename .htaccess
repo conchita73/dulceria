@@ -1,0 +1,15 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+########CON ESTO REDIRECCIONAMOS LA WEB COMPLETA 
+########SEA DE DONDE SEA A HTTPS
+
+RewriteCond %{REQUEST_URI} !=/new_app/functions/confirma_redsys_compra_romantica.php
+RewriteCond %{REQUEST_URI} !=/new_app/functions/confirmar_redsys_compra.php
+RewriteCond %{REQUEST_URI} !=/new_app/functions/confirmar_redsys_reserva.php
+RewriteCond %{REQUEST_URI} !=/new_app/functions/confirmar_redsys_reservas_ppte_pago.php
+RewriteCond %{REQUEST_URI} !=/new_app/functions/confirmar_redsys_devolucion_reservas.php
+RewriteCond %{REQUEST_URI} !=/new_app/functions/ajax.php
+RewriteCond %{HTTPS} !=on
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
