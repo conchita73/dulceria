@@ -1449,12 +1449,13 @@ $tabla="t_body";
 				            tarta : tarta
 				        }, 
 				        function(data) {
-				        $("#respuesta_ajax_js").html(data);
+				        	$('#espera_general').modal('hide');
+				        	$("#respuesta_ajax_js").html(data);
 				    });
 
 					} // if($('[name="nombre_cliente"]').val()=='' .....
 
-				} // $('[name="importe_final"]').val() == 0 
+				} // $('[name="importe_final"]').val() == 0
 
 			}); // $('#confirmar_pedido').click(function(e){
 

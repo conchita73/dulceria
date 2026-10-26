@@ -1403,7 +1403,8 @@ if(!isset($_SESSION['id_pedido'])){
 				            tarta : tarta
 				        }, 
 				        function(data) {
-				        $("#respuesta_ajax_js").html(data);
+					$('#espera_general').modal('hide');
+					$("#respuesta_ajax_js").html(data);
 				    });
 
 					} // if($('[name="nombre_cliente"]').val()=='' .....
