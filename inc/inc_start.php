@@ -34,15 +34,18 @@
 
     }else{
 
-        $DB->query('select * from delegaciones where id='.$_SESSION['id_delegacion']);
-
-        $datos=$DB->fetch();
-
-        foreach ($datos as $key => $value) {
-            // metemos en el array datos_web
-            $datos_web[$key]=$value;
-            //echo " <br>".$key." ".$value;
-
+        try {
+            $DB->query('select * from delegaciones where id='.$_SESSION['id_delegacion']);
+            $datos = $DB->fetch();
+            foreach ($datos as $key => $value) {
+                $datos_web[$key] = $value;
+            }
+        } catch (Throwable $e) {
+            // En localhost puede faltar la tabla delegaciones — seguimos sin datos de delegación
+            $datos_web = [];
+            if(isset($_SERVER['REMOTE_ADDR']) && in_array($_SERVER['REMOTE_ADDR'], ['::1','127.0.0.1'])){
+                error_log('inc_start.php: tabla delegaciones no encontrada: '.$e->getMessage());
+            }
         }
 
     }
