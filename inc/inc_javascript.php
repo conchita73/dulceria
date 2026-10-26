@@ -86,7 +86,7 @@
     <script src="js/plugin/dropzone/dropzone.js?a=<?php echo time(); ?>"></script>
     <?php 
 
-        if(!isset($no_agenda) && $_SESSION['id_usuario'] == 1){
+        if(!isset($no_agenda) && isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] == 1){
 
            include 'inc/inc_agenda.php'; 
 

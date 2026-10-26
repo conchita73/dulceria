@@ -3508,7 +3508,7 @@ if($tabla_editar!="formulario_modal"){
             sleep(1);
             alert('Pedido por '.number_format($importe_final,2,'.','').'€ Realizado');
             // Siempre recargamos: en localhost ip_admin está activo pero el panel debe refrescarse
-            script("location.reload();")
+            script("location.reload();");
 
         }
 
