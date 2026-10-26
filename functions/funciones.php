@@ -2492,6 +2492,7 @@ function pintar_tbody($nombre,$modal,$where=""){
         
                 // echo $datos_query;
                 // QUERY XRA CONTENIDO DE TABLA 
+                $resultado = [r => 0]; // PHP 8: inicializar para evitar Undefined variable
                 if($t['tabla_inner']!=""){
 
                     $resultado=$DB->inner_join($datos_query,$t['tabla_inner'],$t['on_inner'].$where);
