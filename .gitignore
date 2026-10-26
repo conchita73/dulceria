@@ -1,3 +1,6 @@
+# Configuración local (credenciales de BD locales — nunca subir a git)
+functions/config.local.php
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

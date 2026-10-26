@@ -217,25 +217,31 @@ $year = !isset($year) ? date('Y') : $year;
             }
 
 // ** ++ CONSTANTES CONEXION BBDD ++ ** //
-// Detección automática de entorno: localhost usa credenciales locales
-$_is_local = (
-    isset($_SERVER['REMOTE_ADDR']) && in_array($_SERVER['REMOTE_ADDR'], ['::1', '127.0.0.1']) ||
-    php_uname('n') === 'localhost' ||
-    (isset($_SERVER['HTTP_HOST']) && in_array($_SERVER['HTTP_HOST'], ['localhost', '127.0.0.1']))
-);
-
-if ($_is_local) {
-    // ---- LOCALHOST / DESARROLLO ----
-    define('DB_HOST', 'localhost');
-    define('DB_USER', 'root');       // <-- cambia si tu MySQL local usa otro usuario
-    define('DB_PASS', '');           // <-- cambia si tienes contraseña en local
-    define('DB_DB',   'dulceria');   // <-- nombre de la base de datos en local
+// Si existe functions/config.local.php (ignorado por git), lo usa directamente.
+// Si no, detecta el entorno automáticamente.
+$_config_local = __DIR__ . '/config.local.php';
+if (file_exists($_config_local)) {
+    require_once $_config_local;   // define DB_HOST, DB_USER, DB_PASS, DB_DB
 } else {
-    // ---- PRODUCCION ----
-    define('DB_HOST', 'localhost');
-    define('DB_USER', 'c199_largentina');
-    define('DB_PASS', '***');        // <-- contraseña real de producción
-    define('DB_DB',   'c199_largentina');
+    $_is_local = (
+        isset($_SERVER['REMOTE_ADDR']) && in_array($_SERVER['REMOTE_ADDR'], ['::1', '127.0.0.1']) ||
+        php_uname('n') === 'localhost' ||
+        (isset($_SERVER['HTTP_HOST']) && in_array($_SERVER['HTTP_HOST'], ['localhost', '127.0.0.1']))
+    );
+
+    if ($_is_local) {
+        // ---- LOCALHOST / DESARROLLO ----
+        define('DB_HOST', 'localhost');
+        define('DB_USER', 'root');
+        define('DB_PASS', '');
+        define('DB_DB',   'dulceria');
+    } else {
+        // ---- PRODUCCION ----
+        define('DB_HOST', 'localhost');
+        define('DB_USER', 'c199_largentina');
+        define('DB_PASS', '***');        // <-- contraseña real de producción
+        define('DB_DB',   'c199_largentina');
+    }
 }
 
   
