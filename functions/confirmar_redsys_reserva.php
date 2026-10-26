@@ -464,7 +464,7 @@
 
                     padding:10px 0 10px 0">
                 
-                <a href="https:'.$_SERVER['SERVER_NAME'].'/new_app/functions/descargar_documentacion.php?id_voucher='.$id_reserva.'"
+                <a href="https:'.$_SERVER['SERVER_NAME'].'/dulceria/functions/descargar_documentacion.php?id_voucher='.$id_reserva.'"
                     style="font-family: Playfair Display,serif; border-radius: 1px; font-weight: 600;border-width: 0;
                     padding: 8px 25px; transition: color .5s , border-color .5s , background-color .5s; font-size: 16px;
                     padding: 10px 35px; color: #fff; background-color: #'.$comercio['color_email'].';
@@ -578,7 +578,7 @@
 
                     padding:10px 0 10px 0">
                 
-                <a href="https:'.$comercio['web'].'/new_app/functions/descargar_documentacion.php?id_proforma='.$id_reserva.'"
+                <a href="https:'.$comercio['web'].'/dulceria/functions/descargar_documentacion.php?id_proforma='.$id_reserva.'"
                     style="font-family: Playfair Display,serif; border-radius: 1px; font-weight: 600;border-width: 0;
                     padding: 8px 25px; transition: color .5s , border-color .5s , background-color .5s; font-size: 16px;
                     padding: 10px 35px; color: #fff; background-color: #'.$comercio['color_email'].';

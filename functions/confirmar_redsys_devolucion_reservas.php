@@ -108,7 +108,7 @@
 
                 }else if($devolucion==2){
 
-                    script("location.href='https://soltury.com/new_app/super_admin.php?devolucion_realizada=1'");
+                    script("location.href='https://soltury.com/dulceria/super_admin.php?devolucion_realizada=1'");
 
                 }
                 
@@ -138,7 +138,7 @@
 
                 }else if($devolucion==3){
 
-                    script("location.href='https://soltury.com/new_app/super_admin.php?devolucion_realizada=0'");
+                    script("location.href='https://soltury.com/dulceria/super_admin.php?devolucion_realizada=0'");
 
                 }
 

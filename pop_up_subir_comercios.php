@@ -321,7 +321,7 @@ $imga = isset($_SESSION['ip_admin']) ? '' : 'img/bg-abstract2.png';
 					notify_js($msj,'success');
 					if(!isset($_SESSION['ip_admin'])){
 
-						echo "setTimeout('opener.location.reload();location.href=\"https://ckcreativos.com/new_app/pop_up_subir_comercios.php\"',2000);";
+						echo "setTimeout('opener.location.reload();location.href=\"https://ckcreativos.com/dulceria/pop_up_subir_comercios.php\"',2000);";
 					 
 					}
 					

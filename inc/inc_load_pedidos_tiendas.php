@@ -48,7 +48,7 @@
 																	<span class="text-success">'.$h_entrega.'</span>
 																	<div class="username"> '.utf8_encode($cliente).'<span class="text-muted"> '.$tel.'</span>
 																	<h3 class="text-muted">
-																	<a href="/new_app/functions/descargar_pedidos.php?id_pedido='.$d['id'].'" 
+																	<a href="/dulceria/functions/descargar_pedidos.php?id_pedido='.$d['id'].'" 
 																			target="_blank"
 																		 	title="">Ver pedido</a></h3>
 																		 	<a href="#" class="mt-2 "

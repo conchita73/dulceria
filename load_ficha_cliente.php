@@ -14,7 +14,7 @@ $deuda = $d[f][0]['deuda']!='' && $d[f][0]['deuda']>0 ? $d[f][0]['deuda'] : 0;
 										<button type="button" class="btn btn-round btn-info atras btn-icon mr-1" ><i class="fas fa-arrow-circle-left"></i></button>
 										<h4 class="card-title">Compras de clientes:</h4>
 										<?php if($deuda > 0){ ?>
-											<a href="/new_app/functions/descargar_documentacion.php?id_cliente=<?php echo $id; ?>&pagadas=0"
+											<a href="/dulceria/functions/descargar_documentacion.php?id_cliente=<?php echo $id; ?>&pagadas=0"
 												target="_blank"
 												class="btn btn-warning btn-round ml-auto ver_albaranes">
 													<span id="deuda_span">Ver albaranes Pendientes por <?php echo number_format(($deuda/100),2,'.',''); ?> &euro;</span>

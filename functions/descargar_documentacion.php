@@ -78,7 +78,7 @@ error_reporting(E_ALL);
                                             <tr>
                                                 <td style="width:50%;">
                                                     <div style="width:100%;>
-                                                        <img src="https://'.$delegacion['web'].'/new_app/img/logo_documentacion.png" height="100px;" alt="">
+                                                        <img src="https://'.$delegacion['web'].'/dulceria/img/logo_documentacion.png" height="100px;" alt="">
                                                         <br><br>
                                                         <b>'.utf8_encode($delegacion['gerente']).'</b><br>
                                                         CIF : '.$delegacion['cif'].'<br>
@@ -370,7 +370,7 @@ error_reporting(E_ALL);
                                             <tr>
                                                 <td style="width:50%;">
                                                     <div style="width:100%;>
-                                                        <img src="https://'.$delegacion['web'].'/new_app/img/logo_documentacion.png" height="100px;" alt="">
+                                                        <img src="https://'.$delegacion['web'].'/dulceria/img/logo_documentacion.png" height="100px;" alt="">
                                                         <br><br>
                                                         <b>'.utf8_encode($delegacion['gerente']).'</b><br>
                                                         CIF : '.$delegacion['cif'].'<br>
@@ -670,7 +670,7 @@ error_reporting(E_ALL);
                                             <tr>
                                                 <td style="width:50%;">
                                                     <div style="width:100%;>
-                                                        <img src="https://'.$delegacion['web'].'/new_app/img/logo_documentacion.png" height="100px;" alt="">
+                                                        <img src="https://'.$delegacion['web'].'/dulceria/img/logo_documentacion.png" height="100px;" alt="">
                                                         <br><br>
                                                         <b>'.utf8_encode($delegacion['gerente']).'</b><br>
                                                         CIF : '.$delegacion['cif'].'<br>

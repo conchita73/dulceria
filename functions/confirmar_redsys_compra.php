@@ -172,27 +172,27 @@
 
                             if(isset($v['productos']['foto_tartas_personalizadas']) && $v['productos']['foto_tartas_personalizadas'] == 1){
 
-                                $cartel .= '<br><img src="https://pastelerialaargentina.com/new_app/img/pedidos_web/'.$fotos[$k].'" alt="" style="width : 100%;"><br>
-                                <a href="https://pastelerialaargentina.com/new_app/img/pedidos_web/'.$fotos[$k].'" >Descargar Imagen</a>';
+                                $cartel .= '<br><img src="https://pastelerialaargentina.com/dulceria/img/pedidos_web/'.$fotos[$k].'" alt="" style="width : 100%;"><br>
+                                <a href="https://pastelerialaargentina.com/dulceria/img/pedidos_web/'.$fotos[$k].'" >Descargar Imagen</a>';
 
                             }
 
                             if(isset($v['productos']['foto_tartas_galletas']) && $v['productos']['foto_tartas_galletas'] == 1){
 
-                                $cartel .= '<br><img src="https://pastelerialaargentina.com/new_app/img/pedidos_web/'.$fotos[$k].'" alt="" style="width : 100%;"><br>
-                                <a href="https://pastelerialaargentina.com/new_app/img/pedidos_web/'.$fotos[$k].'" >Descargar Imagen</a>';
+                                $cartel .= '<br><img src="https://pastelerialaargentina.com/dulceria/img/pedidos_web/'.$fotos[$k].'" alt="" style="width : 100%;"><br>
+                                <a href="https://pastelerialaargentina.com/dulceria/img/pedidos_web/'.$fotos[$k].'" >Descargar Imagen</a>';
                             }
 
                             if(isset($v['productos']['foto_pastelon']) && $v['productos']['foto_pastelon'] == 1){
 
-                                $cartel .= '<br><img src="https://pastelerialaargentina.com/new_app/img/pedidos_web/'.$fotos[$k].'" alt="" style="width : 100%;"><br>
-                                <a href="https://pastelerialaargentina.com/new_app/img/pedidos_web/'.$fotos[$k].'" >Descargar Imagen</a>';
+                                $cartel .= '<br><img src="https://pastelerialaargentina.com/dulceria/img/pedidos_web/'.$fotos[$k].'" alt="" style="width : 100%;"><br>
+                                <a href="https://pastelerialaargentina.com/dulceria/img/pedidos_web/'.$fotos[$k].'" >Descargar Imagen</a>';
                             }
 
                             if(isset($v['productos']['foto_tartas_predeterminadas']) && $v['productos']['foto_tartas_predeterminadas'] == 1){
 
-                                $cartel .= '<br><img src="https://pastelerialaargentina.com/new_app/img/pedidos_web/'.$fotos[$k].'" alt="" style="width : 100%;"><br>
-                                <a href="https://pastelerialaargentina.com/new_app/img/pedidos_web/'.$fotos[$k].'" >Descargar Imagen</a>';
+                                $cartel .= '<br><img src="https://pastelerialaargentina.com/dulceria/img/pedidos_web/'.$fotos[$k].'" alt="" style="width : 100%;"><br>
+                                <a href="https://pastelerialaargentina.com/dulceria/img/pedidos_web/'.$fotos[$k].'" >Descargar Imagen</a>';
                             }
 
                         }else{
@@ -310,23 +310,23 @@
 
                             if(isset($v['productos']['foto_tartas_personalizadas']) && $v['productos']['foto_tartas_personalizadas'] == 1){
 
-                                $cartel .= '<br><img src="https://pastelerialaargentina.com/new_app/img/pedidos_web/'.$fotos[$k].'" alt="" style="width : 100%;">';
+                                $cartel .= '<br><img src="https://pastelerialaargentina.com/dulceria/img/pedidos_web/'.$fotos[$k].'" alt="" style="width : 100%;">';
 
                             }
 
                             if(isset($v['productos']['foto_tartas_galletas']) && $v['productos']['foto_tartas_galletas'] == 1){
 
-                                $cartel .= '<br><img src="https://pastelerialaargentina.com/new_app/img/pedidos_web/'.$fotos[$k].'" alt="" style="width : 100%;">';
+                                $cartel .= '<br><img src="https://pastelerialaargentina.com/dulceria/img/pedidos_web/'.$fotos[$k].'" alt="" style="width : 100%;">';
                             }
 
                             if(isset($v['productos']['foto_pastelon']) && $v['productos']['foto_pastelon'] == 1){
 
-                                $cartel .= '<br><img src="https://pastelerialaargentina.com/new_app/img/pedidos_web/'.$fotos[$k].'" alt="" style="width : 100%;">';
+                                $cartel .= '<br><img src="https://pastelerialaargentina.com/dulceria/img/pedidos_web/'.$fotos[$k].'" alt="" style="width : 100%;">';
                             }
 
                             if(isset($v['productos']['foto_tartas_predeterminadas']) && $v['productos']['foto_tartas_predeterminadas'] == 1){
 
-                                $cartel .= '<br><img src="https://pastelerialaargentina.com/new_app/img/pedidos_web/'.$fotos[$k].'" alt="" style="width : 100%;">';
+                                $cartel .= '<br><img src="https://pastelerialaargentina.com/dulceria/img/pedidos_web/'.$fotos[$k].'" alt="" style="width : 100%;">';
                             }
 
                         }else{

@@ -56,7 +56,7 @@
             $DB2->update();
 
             # Enviamos email de pago a Pablo
-            $url_cURL="https://".$_SERVER['HTTP_HOST']."/new_app/functions/stripe/pago_procesado.php";
+            $url_cURL="https://".$_SERVER['HTTP_HOST']."/dulceria/functions/stripe/pago_procesado.php";
             $post_cURL=array("id_factura"=>$id_factura);
 
             // operacion curl.

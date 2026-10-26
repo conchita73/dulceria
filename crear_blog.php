@@ -70,7 +70,7 @@ if(isset($id)){
 
 												if(isset($id) && $dp['foto_principal']!=''){
 
-													echo '<div class="alert alert-success alert-dismissible fade show mt-3 col-6" role="alert" style="margin : auto;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><img src="/new_app/img/blog/'.$dp['foto_principal'].'" alt="" style="max-width : 120px;"></div>';
+													echo '<div class="alert alert-success alert-dismissible fade show mt-3 col-6" role="alert" style="margin : auto;"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><img src="/dulceria/img/blog/'.$dp['foto_principal'].'" alt="" style="max-width : 120px;"></div>';
 												}
 											?>
 
@@ -207,7 +207,7 @@ if(isset($id)){
 
 	                $.ajax({
 
-	                    url: "/new_app/functions/ajax.php",
+	                    url: "/dulceria/functions/ajax.php",
 	                    type: "post",
 	                    dataType: "html",
 	                    data: formData,

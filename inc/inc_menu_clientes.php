@@ -1,5 +1,5 @@
 		
-		<?php define('HOME_PATH', '/new_app');  ?>
+		<?php define('HOME_PATH', '/dulceria');  ?>
 		<!-- Sidebar -->
 		<div class="sidebar sidebar-style-2">			
 			<div class="sidebar-wrapper scrollbar">

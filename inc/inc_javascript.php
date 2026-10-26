@@ -210,7 +210,7 @@
                 var value = $(this).val();
 
 
-                $.post('/new_app/functions/ajax.php',
+                $.post('/dulceria/functions/ajax.php',
                 	{
                       	accion: 'u',
                       	id_editar : id_editar,
@@ -314,7 +314,7 @@
 
                     if (Delete) {
                         
-                        $.post('/new_app/functions/ajax.php',
+                        $.post('/dulceria/functions/ajax.php',
                             {
                                 log_out_admin: 1,
                                               

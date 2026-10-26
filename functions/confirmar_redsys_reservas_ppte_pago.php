@@ -113,7 +113,7 @@
                 <br><br>
                 <div style='width:100%; text-align: center; border-bottom:#CCC 1px dotted;  padding:10px 0 10px 0'>
                 
-                <a href='https:".$comercio[f][0]['web']."/new_app/functions/descargar_documentacion.php?id_voucher=".$data_reserva[f][0]['id']."'
+                <a href='https:".$comercio[f][0]['web']."/dulceria/functions/descargar_documentacion.php?id_voucher=".$data_reserva[f][0]['id']."'
                     style='font-family: Playfair Display,serif; border-radius: 1px; font-weight: 600;border-width: 0;
                     padding: 8px 25px; transition: color .5s , border-color .5s , background-color .5s; font-size: 16px;
                     padding: 10px 35px; color: #fff; background-color: #".$comercio[f][0]['color_email'].";

@@ -61,7 +61,7 @@ include("funciones.php");
                                 <tr>
                                     <td style="width:100%;">
                                         <div style="width:100%; height: 100px; text-align: center;" >
-                                            <img src="https://'.$_SERVER['HTTP_HOST'].'/new_app/img/logo_documentacion.png" height="100px;" alt="">
+                                            <img src="https://'.$_SERVER['HTTP_HOST'].'/dulceria/img/logo_documentacion.png" height="100px;" alt="">
                                         </div>
                                     </td>
                                 </tr>
@@ -69,7 +69,7 @@ include("funciones.php");
                             </table>
 
                             <div style="width: 450px; clear: both; text-align:center; margin : auto; border : 1px solid black; border-radius : 5px; height : 300px; overflow : hidden; position : relative;">
-                                <img src="https://www.'.$_SERVER['SERVER_NAME'].'/new_app/img/img_cupon.jpg" style="height : 510px;" alt="">
+                                <img src="https://www.'.$_SERVER['SERVER_NAME'].'/dulceria/img/img_cupon.jpg" style="height : 510px;" alt="">
                                 <div style="background-color : white; height : 15px; position : absolute; border : 1px solid black; width : 130px; border-radius : 5px; top : 10px; left : 80px; padding : 5px;" >
                                     Validez : '.formatear_fecha($d['fecha_caducidad'],m,i).'
                                 </div>

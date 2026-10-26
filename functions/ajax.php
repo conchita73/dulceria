@@ -262,7 +262,7 @@ if(isset($formulario_contacto_modal) || isset($formulario_encargo_modal)){
                     $_SESSION['id_delegacion']=$_SESSION['id_web']=$datos_login_inicio['id_delegacion'];
                     $_SESSION['arr_permisos'] = json_decode($datos_login_inicio['arr_permisos'],true);
 
-                    script("location.href='/new_app/panel.php'");
+                    script("location.href='/dulceria/panel.php'");
 
 
                 }
@@ -293,7 +293,7 @@ if(isset($formulario_contacto_modal) || isset($formulario_encargo_modal)){
             $_SESSION['id_comercio']=$datos_login_inicio['id'];
             $_SESSION['id_delegacion']=$_SESSION['id_web']=$datos_login_inicio['id_delegacion'];
 
-            script("location.href='/new_app/area_clientes.php'");
+            script("location.href='/dulceria/area_clientes.php'");
 
         }
 
@@ -346,7 +346,7 @@ if(isset($formulario_contacto_modal) || isset($formulario_encargo_modal)){
                 if($c[r]>0){
 
                     # avisamos al comercio y cliente
-                    $url_cURL="https://".$_SERVER['HTTP_HOST']."/new_app/functions/ajax.php";
+                    $url_cURL="https://".$_SERVER['HTTP_HOST']."/dulceria/functions/ajax.php";
                     $post_cURL=array(
                             "enviar_email"=>1,
                             "tabla_enviar"=>"recupera_pass",
@@ -483,7 +483,7 @@ if(isset($formulario_contacto_modal) || isset($formulario_encargo_modal)){
 
                 $id_insert = $DB->insert();
                 # avisamos al comercio y cliente
-                $url_cURL="https://".$_SERVER['HTTP_HOST']."/new_app/functions/ajax.php";
+                $url_cURL="https://".$_SERVER['HTTP_HOST']."/dulceria/functions/ajax.php";
                 $post_cURL=array(
                         "enviar_email"=>1,
                         "tabla_enviar"=>"moderar_comentario",
@@ -536,7 +536,7 @@ if(isset($formulario_contacto_modal) || isset($formulario_encargo_modal)){
                 if(isset($registro_web)){
 
                     # avisamos al comercio y cliente
-                    $url_cURL="https://".$_SERVER['HTTP_HOST']."/new_app/functions/ajax.php";
+                    $url_cURL="https://".$_SERVER['HTTP_HOST']."/dulceria/functions/ajax.php";
                     $post_cURL=array(
                             "enviar_email"=>1,
                             "tabla_enviar"=>"bienvenida",
@@ -592,7 +592,7 @@ if(isset($formulario_contacto_modal) || isset($formulario_encargo_modal)){
                         list($na,$ea) = explode('.'.$ext, $v);
                         $nn = getPass(8).'.'.$ext;
 
-                        $arr[] = 'https://'.$_SERVER['HTTP_HOST'].'/new_app/img/productos/'.$nn; 
+                        $arr[] = 'https://'.$_SERVER['HTTP_HOST'].'/dulceria/img/productos/'.$nn; 
                         rename($dir.'temporal/'.$v,$dir.'productos/'.$nn);
 
                     }
@@ -1023,7 +1023,7 @@ if($tabla_editar!="formulario_modal"){
                     $id_factura = $id_fac[f][0]['id'];
 
 /*
-                    $url_cURL="https://".$_SERVER['HTTP_HOST']."/new_app/functions/ajax.php";
+                    $url_cURL="https://".$_SERVER['HTTP_HOST']."/dulceria/functions/ajax.php";
                     $post_cURL=array(
                                 "enviar_email"=>1,
                                 "tabla_enviar"=>"facturas",
@@ -1114,7 +1114,7 @@ if($tabla_editar!="formulario_modal"){
                         list($na,$ea) = explode('.'.$ext, $v);
                         $nn = getPass(8).'.'.$ext;
 
-                        $arr_nf[] = 'https://'.$_SERVER['HTTP_HOST'].'/new_app/img/productos/'.$nn; 
+                        $arr_nf[] = 'https://'.$_SERVER['HTTP_HOST'].'/dulceria/img/productos/'.$nn; 
                         rename($dir.'temporal/'.$v,$dir.'productos/'.$nn);
 
                     }
@@ -1397,7 +1397,7 @@ if($tabla_editar!="formulario_modal"){
                     <br><br>
                     <div style="width:100%; text-align: center;
                             border-bottom:#CCC 1px dotted; padding:10px 0 10px 0">
-                    <a href="https://'.$datos['web'].'/new_app/functions/descargar_documentacion.php?id_'.$id_print.'"
+                    <a href="https://'.$datos['web'].'/dulceria/functions/descargar_documentacion.php?id_'.$id_print.'"
                             style="font-family: Playfair Display,serif; border-radius: 1px; font-weight: 600;border-width: 0;
                             padding: 8px 25px; transition: color .5s , border-color .5s , background-color .5s; font-size: 16px;
                             padding: 10px 35px; color: #fff; background-color: #'.$datos['color_email'].';
@@ -1827,7 +1827,7 @@ if($tabla_editar!="formulario_modal"){
                     // #deuda_span aqui hay que tirar el nuevo precio
 
                     $extras.='
-                            $(".ver_albaranes").attr("href","/new_app/functions/descargar_documentacion.php?id_cliente='.$id_cliente.'&pagadas=0&desde='.formatear_fecha($desde,i,m).'&hasta='.formatear_fecha($hasta,i,m).'");
+                            $(".ver_albaranes").attr("href","/dulceria/functions/descargar_documentacion.php?id_cliente='.$id_cliente.'&pagadas=0&desde='.formatear_fecha($desde,i,m).'&hasta='.formatear_fecha($hasta,i,m).'");
                             $("#deuda_span").html("Ver albaranes Pendientes por '.number_format(($movimientos['totales']),2,'.','').' &euro;");
 
                         ';
@@ -2266,7 +2266,7 @@ if($tabla_editar!="formulario_modal"){
     $DB->ta['verificado']=1;
     $DB->insert();
 
-    $url_cURL="https://".$_SERVER['HTTP_HOST']."/new_app/functions/ajax.php";
+    $url_cURL="https://".$_SERVER['HTTP_HOST']."/dulceria/functions/ajax.php";
     $post_cURL=array(
                 "enviar_email"=>1,
                 "tabla_enviar"=>"facturas",
@@ -3609,7 +3609,7 @@ if($tabla_editar!="formulario_modal"){
             rename($dir.$_FILES['upload']['name'],$dir.$new_name);
             // ftp_rename($conn_id, $_FILES["upload"]["name"], $new_name);
 
-            $imge = 'https://pastelerialaargentina.com/new_app/img/blog/'.$new_name;
+            $imge = 'https://pastelerialaargentina.com/dulceria/img/blog/'.$new_name;
             list($width, $height, $type, $attr) = getimagesize($imge);
 
             if($width>3000 || $height>3000){
@@ -3641,7 +3641,7 @@ if($tabla_editar!="formulario_modal"){
 
     $DB->query('update comentarios_blog set aprobado = 1 where id = '.$id);
 
-    $url_cURL="https://".$_SERVER['HTTP_HOST']."/new_app/functions/ajax.php";
+    $url_cURL="https://".$_SERVER['HTTP_HOST']."/dulceria/functions/ajax.php";
     $post_cURL=array(
             "enviar_email"=>1,
             "tabla_enviar"=>"aprobar_comentario",
@@ -3670,7 +3670,7 @@ if($tabla_editar!="formulario_modal"){
         $DB->ta['comentario'] = utf8_decode($comentario);
         $DB->update();
 
-        $url_cURL="https://".$_SERVER['HTTP_HOST']."/new_app/functions/ajax.php";
+        $url_cURL="https://".$_SERVER['HTTP_HOST']."/dulceria/functions/ajax.php";
         $post_cURL=array(
                 "enviar_email"=>1,
                 "tabla_enviar"=>"aprobar_comentario",

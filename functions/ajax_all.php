@@ -1360,7 +1360,7 @@ $n_c_a=count($id_nombre_campo_);
             Puedes realizar el abono mediante tarjeta en el siguiente enlace:
             <br><br>
             <div style='width:100%; text-align: center; padding:10px 0 10px 0'>
-                <a href='https://".$datos[f][0]['web']."/new_app/functions/ajax.php?id_reserva_email=".$id_reserva."'
+                <a href='https://".$datos[f][0]['web']."/dulceria/functions/ajax.php?id_reserva_email=".$id_reserva."'
                     style='font-family: Playfair Display,serif; border-radius: 1px; font-weight: 600;border-width: 0;
                     padding: 8px 25px; transition: color .5s , border-color .5s , background-color .5s; font-size: 16px;
                     padding: 10px 35px; color: #fff; background-color: #".$datos[f][0]['color_email'].";
@@ -1423,7 +1423,7 @@ $n_c_a=count($id_nombre_campo_);
 
                 padding:10px 0 10px 0">
             
-            <a href="https:'.$datos[f][0]['web'].'/new_app/functions/'.$url.'.php?id_voucher='.$id_reserva.'"
+            <a href="https:'.$datos[f][0]['web'].'/dulceria/functions/'.$url.'.php?id_voucher='.$id_reserva.'"
                 style="font-family: Playfair Display,serif; border-radius: 1px; font-weight: 600;border-width: 0;
                 padding: 8px 25px; transition: color .5s , border-color .5s , background-color .5s; font-size: 16px;
                 padding: 10px 35px; color: #fff; background-color: #'.$datos[f][0]['color_email'].';
@@ -1461,7 +1461,7 @@ $n_c_a=count($id_nombre_campo_);
             Puedes realizar el abono mediante tarjeta en el siguiente enlace:
             <br><br>
             <div style='width:100%; text-align: center; padding:10px 0 10px 0'>
-                <a href='https://".$datos[f][0]['web']."/new_app/functions/ajax.php?id_reserva_email=0&id_cliente=".$id_cliente."&importe_personalizado=".($importe_email_pago*100)."'
+                <a href='https://".$datos[f][0]['web']."/dulceria/functions/ajax.php?id_reserva_email=0&id_cliente=".$id_cliente."&importe_personalizado=".($importe_email_pago*100)."'
                     style='font-family: Playfair Display,serif; border-radius: 1px; font-weight: 600;border-width: 0;
                     padding: 8px 25px; transition: color .5s , border-color .5s , background-color .5s; font-size: 16px;
                     padding: 10px 35px; color: #fff; background-color: #".$datos[f][0]['color_email'].";
@@ -4893,7 +4893,7 @@ if(!isset($buscar_solo_hotel)){
     $DB->update();
 
         // envio del email, desde aqui mismo
-    $url_cURL_redsys="https://".$historico[f][0]['web']."/new_app/functions/ajax.php";
+    $url_cURL_redsys="https://".$historico[f][0]['web']."/dulceria/functions/ajax.php";
 
 
     $post_cURL=array("email_".$tipo_email."_manual"=>"1",
@@ -7563,7 +7563,7 @@ if(!isset($buscar_solo_hotel)){
 
                 padding:10px 0 10px 0">
             
-            <a href="https:'.$datos[f][0]['web'].'/new_app/functions/descargar_documentacion.php?id_voucher='.$id_reserva.'"
+            <a href="https:'.$datos[f][0]['web'].'/dulceria/functions/descargar_documentacion.php?id_voucher='.$id_reserva.'"
                 style="font-family: Playfair Display,serif; border-radius: 1px; font-weight: 600;border-width: 0;
                 padding: 8px 25px; transition: color .5s , border-color .5s , background-color .5s; font-size: 16px;
                 padding: 10px 35px; color: #fff; background-color: #'.$datos[f][0]['color_email'].';
@@ -7717,7 +7717,7 @@ if(!isset($buscar_solo_hotel)){
 
                 padding:10px 0 10px 0">
             
-            <a href="https:'.$datos[f][0]['web'].'/new_app/functions/descargar_documentacion.php?id_proforma='.$id_reserva.'"
+            <a href="https:'.$datos[f][0]['web'].'/dulceria/functions/descargar_documentacion.php?id_proforma='.$id_reserva.'"
                 style="font-family: Playfair Display,serif; border-radius: 1px; font-weight: 600;border-width: 0;
                 padding: 8px 25px; transition: color .5s , border-color .5s , background-color .5s; font-size: 16px;
                 padding: 10px 35px; color: #fff; background-color: #'.$datos[f][0]['color_email'].';
@@ -7743,7 +7743,7 @@ if(!isset($buscar_solo_hotel)){
             }else{
 
                 alert('La reserva ha sido confirmada, en breve recibiras un email con los datos');
-                script("open_pop_up('https://soltury.com/new_app/functions/descargar_documentacion.php?id_proforma=".$id_reserva."',800,900);
+                script("open_pop_up('https://soltury.com/dulceria/functions/descargar_documentacion.php?id_proforma=".$id_reserva."',800,900);
                     window.close();");
 
             } // if(!isset($_SESSION['Authenticated']) && !isset($_SESSION['id_cliente_booking'])){
@@ -8275,7 +8275,7 @@ if(!isset($buscar_solo_hotel)){
             if($comprobar_cliente[r]==0){
 
                 // SE EJECUTA TODO EN ajax.php EN LA ZONA DE INSERT´S
-                $url_cURL_redsys="https://".$comercio[f][0]['web']."/new_app/functions/ajax.php";
+                $url_cURL_redsys="https://".$comercio[f][0]['web']."/dulceria/functions/ajax.php";
 
                 $post_cURL=array("accion"=>i,
                         "tabla_insertar"=>"clientes",
@@ -8308,7 +8308,7 @@ if(!isset($buscar_solo_hotel)){
 
                 // si el cliente existe añadimos los bonos a su cuenta 
                 // SE EJECUTA TODO EN ajax.php EN LA ZONA DE INSERT´S
-                $url_cURL_redsys="https://".$comercio[f][0]['web']."/new_app/functions/ajax.php";
+                $url_cURL_redsys="https://".$comercio[f][0]['web']."/dulceria/functions/ajax.php";
                 
                 $post_cURL=array("accion"=>"i",
                         "tabla_insertar"=>"envios",
@@ -8387,7 +8387,7 @@ if(!isset($buscar_solo_hotel)){
                     if($comprobar_cliente[r]==0){
 
                         // SE EJECUTA TODO EN ajax.php EN LA ZONA DE INSERT´S
-                        $url_cURL_redsys="https://".$comercio[f][0]['web']."/new_app/functions/ajax.php";
+                        $url_cURL_redsys="https://".$comercio[f][0]['web']."/dulceria/functions/ajax.php";
 
                         $post_cURL=array("accion"=>i,
                                 "tabla_insertar"=>"clientes",
@@ -8420,7 +8420,7 @@ if(!isset($buscar_solo_hotel)){
 
                         // si el cliente existe añadimos los bonos a su cuenta 
                         // SE EJECUTA TODO EN ajax.php EN LA ZONA DE INSERT´S
-                        $url_cURL_redsys="https://".$comercio[f][0]['web']."/new_app/functions/ajax.php";
+                        $url_cURL_redsys="https://".$comercio[f][0]['web']."/dulceria/functions/ajax.php";
                         
                         $post_cURL=array("accion"=>"i",
                                 "tabla_insertar"=>"envios",

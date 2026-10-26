@@ -3426,7 +3426,7 @@ function body_email($tipo,$datos_cliente,$id_web,$textos=""){
         $saludo_personal="Estimad@";   
     }
 
-    $url_cabecera = "https://".$datos_web[f][0]['web']."/new_app/img/logo_argentina.png";
+    $url_cabecera = "https://".$datos_web[f][0]['web']."/dulceria/img/logo_argentina.png";
 
 
     $body = '<!DOCTYPE html>
