@@ -10,20 +10,12 @@
 
     // }
 
-    // if($_SERVER['REMOTE_ADDR']=="5.154.69.122" || $_SERVER['REMOTE_ADDR']=="185.178.136.16"){
-
-    //     $_SESSION['ip_admin']=1;
-    //     $_SESSION['Authenticated']=1;
-    //     $_SESSION['id_web']=1;
-    //     $_SESSION['id_usuario']=1;
-
-    //     error_reporting(E_ALL | E_STRICT);
-
-    // }else{
-
-    //     error_reporting(0);
-
-    // }
+    // En localhost mostramos errores (sin E_DEPRECATED para evitar spam en PHP 8.2)
+    if (in_array($_SERVER['REMOTE_ADDR'], ['::1', '127.0.0.1'])) {
+        error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
+    } else {
+        error_reporting(0);
+    }
 
 
     if(!isset($_SESSION['id_web'])){

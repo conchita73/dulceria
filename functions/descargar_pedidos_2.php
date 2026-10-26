@@ -950,7 +950,7 @@ if(isset($_COOKIE['soy_pedro'])){
     }else{
 
         // convert to PDF
-        require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
+        require_once(dirname(__FILE__).'/html2pdf_compat.php');
         try
         {
             $html2pdf = new HTML2PDF('P', 'A4', 'es');

@@ -12,11 +12,15 @@
 
     }
 
-    if($_SERVER['REMOTE_ADDR']=="185.178.136.1" || $_SERVER['REMOTE_ADDR']=="85.137.97.179"){
+    // IPs con acceso de administrador: IPs de producción + localhost para desarrollo
+    $ips_admin = ['185.178.136.1', '85.137.97.179', '::1', '127.0.0.1'];
+
+    if(in_array($_SERVER['REMOTE_ADDR'], $ips_admin)){
 
         $_SESSION['ip_admin']=1;
         $_SESSION['Authenticated']=1;
-        error_reporting(E_ALL | E_STRICT);
+        // PHP 8.2: E_STRICT ya no existe; usamos E_ALL & ~E_DEPRECATED para evitar spam de deprecaciones
+        error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 
     }else{
 

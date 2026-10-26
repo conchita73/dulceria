@@ -2,9 +2,12 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
-########CON ESTO REDIRECCIONAMOS LA WEB COMPLETA 
+########CON ESTO REDIRECCIONAMOS LA WEB COMPLETA
 ########SEA DE DONDE SEA A HTTPS
+########EN LOCALHOST SE DESACTIVA LA REDIRECCIÓN HTTPS
 
+RewriteCond %{HTTP_HOST} !^localhost$ [NC]
+RewriteCond %{HTTP_HOST} !^127\.0\.0\.1$
 RewriteCond %{REQUEST_URI} !=/new_app/functions/confirma_redsys_compra_romantica.php
 RewriteCond %{REQUEST_URI} !=/new_app/functions/confirmar_redsys_compra.php
 RewriteCond %{REQUEST_URI} !=/new_app/functions/confirmar_redsys_reserva.php

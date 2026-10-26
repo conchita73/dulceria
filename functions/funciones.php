@@ -1,5 +1,7 @@
 <?php
 
+// ** ++ COMPATIBILIDAD PHP 8.2 ++ ** //
+require_once __DIR__ . '/compat_php82.php';
 
 // ** ++ TODAS LAS FUNCIONES VAN A IR EN ESTE ARCHIVO ++ ** //
 /*
@@ -215,18 +217,26 @@ $year = !isset($year) ? date('Y') : $year;
             }
 
 // ** ++ CONSTANTES CONEXION BBDD ++ ** //
-// if($_SERVER['REMOTE_ADDR']=="::1"){
-//     define('DB_HOST', 'localhost');
-//     define('DB_USER', 'root');
-//     define('DB_PASS', 'root');
-//     define('DB_DB', 'soltury');
-// }else{
-// aqui tengo que definir los reales de soltury
+// Detección automática de entorno: localhost usa credenciales locales
+$_is_local = (
+    isset($_SERVER['REMOTE_ADDR']) && in_array($_SERVER['REMOTE_ADDR'], ['::1', '127.0.0.1']) ||
+    php_uname('n') === 'localhost' ||
+    (isset($_SERVER['HTTP_HOST']) && in_array($_SERVER['HTTP_HOST'], ['localhost', '127.0.0.1']))
+);
+
+if ($_is_local) {
+    // ---- LOCALHOST / DESARROLLO ----
+    define('DB_HOST', 'localhost');
+    define('DB_USER', 'root');       // <-- cambia si tu MySQL local usa otro usuario
+    define('DB_PASS', '');           // <-- cambia si tienes contraseña en local
+    define('DB_DB',   'dulceria');   // <-- nombre de la base de datos en local
+} else {
+    // ---- PRODUCCION ----
     define('DB_HOST', 'localhost');
     define('DB_USER', 'c199_largentina');
-    define('DB_PASS', '***');
-    define('DB_DB', 'c199_largentina');
-// }
+    define('DB_PASS', '***');        // <-- contraseña real de producción
+    define('DB_DB',   'c199_largentina');
+}
 
   
   // ** ++ CLASE $DB + VAR $DB RETURN ++ ** //
@@ -985,10 +995,7 @@ class DataAccess {
             */
     
             if ($value_ != NULL) {
-                // Retirar las barras si es necesario
-                if ((get_magic_quotes_gpc()) && (!is_integer($value_))) {
-                    $value_ = stripslashes($value_);
-                }
+                // get_magic_quotes_gpc() eliminada en PHP 8.0; ya no es necesario stripslashes
                 // Colocar comillas si no es un entero
                 if (!is_integer($value_)) {
                     $value_ = "" . mysqli_real_escape_string($this->link,$value_) . "";

@@ -917,7 +917,7 @@ error_reporting(E_ALL);
 
      // echo "helo".$content;
 
-    require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
+    require_once(dirname(__FILE__).'/html2pdf_compat.php');
 
 
     try
