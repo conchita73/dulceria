@@ -80,7 +80,11 @@ $modal_1=array("clientes","Crear Cliente");
 
 															$t_body_clientes = pintar_tbody('clientes',$modal_1,' es_recurrente=1');
 
-															echo $t_body_clientes['body'];
+															if(is_string($t_body_clientes)){
+																echo '<div class="alert alert-danger">Error tabla clientes: '.htmlspecialchars($t_body_clientes).'</div>';
+															} else {
+																echo $t_body_clientes['body'];
+															}
 
 														?>
 
