@@ -525,13 +525,14 @@ if(isset($formulario_contacto_modal) || isset($formulario_encargo_modal)){
 
             case 'clientes':
 
-                $DB->ta['id_delegacion'] = $_SESSION['id_delegacion']; 
-                $DB->ta['fecha'] = date('Y-m-d'); 
+                $DB->ta['id_delegacion'] = $_SESSION['id_delegacion'];
+                $DB->ta['fecha'] = date('Y-m-d');
                 // $new_pass=getPass(8);
-                // $DB->ta['password']=password_hash($new_pass, PASSWORD_DEFAULT); 
-                // $DB->ta["comentario"]=$new_pass;   
+                // $DB->ta['password']=password_hash($new_pass, PASSWORD_DEFAULT);
+                // $DB->ta["comentario"]=$new_pass;
 
-                $id_insert = $DB->insert(); 
+                $id_insert = $DB->insert();
+                $no_insert = 1; // evitar el insert genérico posterior (evita duplicados)
 
                 if(isset($registro_web)){
 
