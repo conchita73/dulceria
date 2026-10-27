@@ -645,7 +645,7 @@ if(isset($formulario_contacto_modal) || isset($formulario_encargo_modal)){
 
             }else{
 
-                if(!isset($_SESSION['ip_admin']) && !isset($registro_web)){
+                if(!isset($registro_web)){
 
                     script("location.reload();");
 
@@ -1174,9 +1174,8 @@ if($tabla_editar!="formulario_modal"){
 
             }else{
 
-                  if(!isset($_SESSION['ip_admin'])){
-                    location(2);
-                  }
+                location(2);
+
             }
         }
 

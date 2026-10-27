@@ -179,8 +179,8 @@
             $(".callAjax").click(function(e){
 
                 var serialize = "#"+$(this).next("input").attr("name")+"_form";
-                $(serialize).form_validator_ajax();
-      
+                $(serialize).form_validator_ajax({url: 'functions/ajax.php'});
+
             }); //eof $(".callAjax").click(function(e){
 
             $('[name^="importe"], [name^="pvp"]').addClass('is_number');
