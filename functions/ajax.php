@@ -629,7 +629,11 @@ if(isset($formulario_contacto_modal) || isset($formulario_encargo_modal)){
 
         }else{
 
-            if(isset($noty) || isset($notify)){
+            if(isset($es_popup)){
+
+                script('opener.location.reload(); window.close();');
+
+            }else if(isset($noty) || isset($notify)){
 
                 notify('Registro Insertado','success');
                 if($tabla_insertar == 'clientes'){
@@ -639,12 +643,12 @@ if(isset($formulario_contacto_modal) || isset($formulario_encargo_modal)){
 
 
             }else{
-                 
+
                 if(!isset($_SESSION['ip_admin']) && !isset($registro_web)){
 
                     script("location.reload();");
 
-                }  
+                }
             }
         }
 
@@ -1155,7 +1159,11 @@ if($tabla_editar!="formulario_modal"){
 
         }else{
 
-            if(isset($sin_reload) || isset($sin_reload_zona_privada)){
+            if(isset($es_popup)){
+
+                script('opener.location.reload(); window.close();');
+
+            }else if(isset($sin_reload) || isset($sin_reload_zona_privada)){
 
                 alert('Datos Modificados');
 
@@ -1166,7 +1174,7 @@ if($tabla_editar!="formulario_modal"){
             }else{
 
                   if(!isset($_SESSION['ip_admin'])){
-                    location(2);  
+                    location(2);
                   }
             }
         }
