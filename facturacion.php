@@ -12,6 +12,54 @@ $modal_2=array("facturas","Crear Factura");
 
 
 
+
+// --- CÁLCULO CONTABILIDAD ---
+$meses_cont = array(
+    'Ene'=>"01",'Feb'=>"02",'Mar'=>"03",'Abr'=>"04",
+    'May'=>"05",'Jun'=>"06",'Jul'=>"07",'Ago'=>"08",
+    'Sep'=>"09",'Oct'=>10,'Nov'=>11,'Dic'=>12,
+);
+$year_cont = date('Y');
+$ing_cont = '';
+$gas_cont = '';
+$ben_cont = '';
+$comp_cont = '';
+$ingreso_total = 0;
+$gastos_total = 0;
+$beneficio_total = 0;
+$compras_total = 0;
+
+ob_start();
+foreach ($meses_cont as $key => $value) {
+    $DB->query('select sum(importe) as ingresos from movimientos_bancarios where fecha BETWEEN "'.$year_cont.'-'.$value.'-01 00:00:00" AND "'.$year_cont.'-'.$value.'-31 23:59:59" and tipo = 1');
+    ${$key.'_ing'} = $DB->fetch();
+    ${$key.'_ing'}['ingresos'] = (${$key.'_ing'}['ingresos'] != '') ? ${$key.'_ing'}['ingresos'] : 0;
+    $ing_cont .= number_format((${$key.'_ing'}['ingresos']/100),2,'.','');
+    $ing_cont .= $value!=12 ? ',' : '';
+    $ingreso_total += ${$key.'_ing'}['ingresos'];
+
+    $DB->query('select sum(importe) as gastos from movimientos_bancarios where fecha BETWEEN "'.$year_cont.'-'.$value.'-01 00:00:00" AND "'.$year_cont.'-'.$value.'-31 23:59:59" and tipo = 0 and clase like "gasto"');
+    ${$key.'_gast'} = $DB->fetch();
+    ${$key.'_gast'}['gastos'] = (${$key.'_gast'}['gastos'] != '') ? ${$key.'_gast'}['gastos'] : 0;
+    $gas_cont .= number_format((${$key.'_gast'}['gastos']/100),2,'.','');
+    $gas_cont .= $value!=12 ? ',' : '';
+    $gastos_total += ${$key.'_gast'}['gastos'];
+
+    $DB->query('select sum(importe) as compras from movimientos_bancarios where fecha BETWEEN "'.$year_cont.'-'.$value.'-01 00:00:00" AND "'.$year_cont.'-'.$value.'-31 23:59:59" and tipo = 0 and clase like "compra"');
+    ${$key.'_comp'} = $DB->fetch();
+    ${$key.'_comp'}['compras'] = (${$key.'_comp'}['compras'] != '') ? ${$key.'_comp'}['compras'] : 0;
+    $comp_cont .= number_format((${$key.'_comp'}['compras']/100),2,'.','');
+    $comp_cont .= $value!=12 ? ',' : '';
+    $compras_total += ${$key.'_comp'}['compras'];
+
+    ${$key.'_ben'} = (int)${$key.'_ing'}['ingresos']-(int)${$key.'_gast'}['gastos']-(int)${$key.'_comp'}['compras'];
+    $ben_cont .= number_format(((int)${$key.'_ben'}/100),2,'.','');
+    $ben_cont .= $value!=12 ? ',' : '';
+    $beneficio_total += ${$key.'_ben'};
+}
+$_cont_sql_errors = ob_get_clean();
+// --- FIN CÁLCULO CONTABILIDAD ---
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -256,19 +304,19 @@ $modal_2=array("facturas","Crear Factura");
 																		<div class="row">
 																			<div class="col-sm-3 text-center">
 																				<h3 class="text-success">Ingresos Totales:</h3>
-																				<h2><span id="ing_final"></span>&euro;</h2>
+																				<h2><span id="ing_final"><?php echo number_format(((int)$ingreso_total/100),2,'.','') ?></span>&euro;</h2>
 																			</div> 
 																			<div class="col-sm-3 text-center">
 																				<h3 class="text-success">Gastos Totales:</h3>
-																				<h2><span id="gast_final"></span>&euro;</h2>
+																				<h2><span id="gast_final"><?php echo number_format(((int)$gastos_total/100),2,'.','') ?></span>&euro;</h2>
 																			</div>
 																			<div class="col-sm-3 text-center">
 																				<h3 class="text-success">Compras Totales:</h3>
-																				<h2><span id="comp_final"></span>&euro;</h2>
+																				<h2><span id="comp_final"><?php echo number_format(((int)$compras_total/100),2,'.','') ?></span>&euro;</h2>
 																			</div>
 																			<div class="col-sm-3 text-center">
 																				<h3 class="text-success">Beneficios Totales:</h3>
-																				<h2><span id="ben_final"></span>&euro;</h2>
+																				<h2><span id="ben_final"><?php echo number_format(((int)$beneficio_total/100),2,'.','') ?></span>&euro;</h2>
 																			</div>
 																		</div>
 																	</div>
@@ -418,101 +466,6 @@ $modal_2=array("facturas","Crear Factura");
 		gradientFill4.addColorStop(0, "rgba(43, 128, 70, 0.7)");
 		gradientFill4.addColorStop(1, "rgba(60, 187, 101, 0.3)");
 
-		            <?php 
-
-                        $meses = array(
-                                'Ene'=>"01",
-                                'Feb'=>"02",
-                                'Mar'=>"03",
-                                'Abr'=>"04",
-                                'May'=>"05",
-                                'Jun'=>"06",
-                                'Jul'=>"07",
-                                'Ago'=>"08",
-                                'Sep'=>"09",
-                                'Oct'=>10,
-                                'Nov'=>11,
-                                'Dic'=>12,
-                            );
-
-                        $year = date('Y'); // año por defecto para carga inicial; el filtro por año usa AJAX
-
-                        $ing = '';
-                        $gas = '';
-                        $ben = '';
-                        $comp = '';
-
-
-						$ingreso_total=0;
-						$gastos_total=0;
-						$beneficio_total=0;
-						$compras_total=0;
-
-                        ob_start(); // evita que errores MySQL de query() se inyecten en el JS
-                        foreach ($meses as $key => $value) {
-
-                        	# sacamos los ingresos
-                            $DB->query('select sum(importe) as ingresos from movimientos_bancarios where fecha BETWEEN "'.$year.'-'.$value.'-01 00:00:00" AND "'.$year.'-'.$value.'-31 23:59:59" and tipo = 1');
-
-
-                            ${$key.'_ing'}=$DB->fetch();
-
-                            ${$key.'_ing'}['ingresos'] = ${$key.'_ing'}['ingresos'] != '' ? ${$key.'_ing'}['ingresos'] : 0;
-                           	$ing .= number_format((${$key.'_ing'}['ingresos']/100),2,'.','');
-                           	$ing .= $value!=12 ? ',' : '';
-                           	$ingreso_total += ${$key.'_ing'}['ingresos'];
-
-                            	
-
-                            # sacamos los gastos
-                            $DB->query('select sum(importe) as gastos from movimientos_bancarios where fecha BETWEEN "'.$year.'-'.$value.'-01 00:00:00" AND "'.$year.'-'.$value.'-31 23:59:59" and tipo = 0 and clase like "gasto"');
-
-                            ${$key.'_gast'}=$DB->fetch();
-
-                            ${$key.'_gast'}['gastos'] = ${$key.'_gast'}['gastos'] != '' ? ${$key.'_gast'}['gastos'] : 0;
-
-                            $gas .= number_format((${$key.'_gast'}['gastos']/100),2,'.','');
-                           	$gas .= $value!=12 ? ',' : '';
-                            $gastos_total += ${$key.'_gast'}['gastos'];
-
-                            # sacamos las compras
-                            $DB->query('select sum(importe) as compras from movimientos_bancarios where fecha BETWEEN "'.$year.'-'.$value.'-01 00:00:00" AND "'.$year.'-'.$value.'-31 23:59:59" and tipo = 0 and clase like "compra"');
-
-                            ${$key.'_comp'}=$DB->fetch();
-
-                            ${$key.'_comp'}['compras'] = ${$key.'_comp'}['compras'] != '' ? ${$key.'_comp'}['compras'] : 0;
-
-                            $comp .= number_format((${$key.'_comp'}['compras']/100),2,'.','');
-                           	$comp .= $value!=12 ? ',' : '';
-                            $compras_total += ${$key.'_comp'}['compras'];
-
-
-                            # sacamos el beneficio
-                            ${$key.'_ben'} = (int)${$key.'_ing'}['ingresos']-(int)${$key.'_gast'}['gastos']-(int)${$key.'_comp'}['compras'];
-                            $ben .= number_format(((int)${$key.'_ben'}/100),2,'.','');
-                           	$ben .= $value!=12 ? ',' : '';
-                           	$beneficio_total += ${$key.'_ben'};
-                            // echo "{ y: '".$key."', a: ".(${$key}['total']/100).", b:".(${$key}['neto_total']/100).", c:".($beneficio/100)." , d : ".${$key}['reservas']."}";
-                            // if($value!=12){
-                            //     echo ",";
-                            // }
-
-                        } // foreach ($meses as $key => $value) {
-                        $sql_debug_cont = ob_get_clean();
-                    ?>
-
-        <?php if(in_array($_SERVER['REMOTE_ADDR'],['::1','127.0.0.1']) && $sql_debug_cont): ?>
-        /* DEBUG-CONT MySQL errors: <?php echo addslashes(strip_tags($sql_debug_cont)) ?> */
-        <?php endif; ?>
-
-        $('#ing_final').html('<?php echo number_format(((int)$ingreso_total/100),2,'.','') ?>');
-        $('#gast_final').html('<?php echo number_format(((int)$gastos_total/100),2,'.','') ?>');
-        $('#ben_final').html('<?php echo number_format(((int)$beneficio_total/100),2,'.','') ?>');
-        $('#comp_final').html('<?php echo number_format(((int)$compras_total/100),2,'.','') ?>');
-
-
-
-  
 		var myHtmlLegendsChart = new Chart(htmlLegendsChart, {
 			type: "line",
 			data: {
@@ -527,7 +480,7 @@ $modal_2=array("facturas","Crear Factura");
 					fill: true,
 					borderWidth: 1,
 
-					data: [<?php echo $comp; ?>]
+					data: [<?php echo $comp_cont; ?>]
 
 				},{
 					label: "Gastos",
@@ -538,7 +491,7 @@ $modal_2=array("facturas","Crear Factura");
 					legendColor: '#f3545d',
 					fill: true,
 					borderWidth: 1,
-					data: [<?php echo $gas; ?>]
+					data: [<?php echo $gas_cont; ?>]
 
 				},{
 					label: "Beneficios",
@@ -550,7 +503,7 @@ $modal_2=array("facturas","Crear Factura");
 					fill: true,
 					borderWidth: 1,
 
-					data: [<?php echo $ben; ?>]
+					data: [<?php echo $ben_cont; ?>]
 
 				},{
 					label: "Ingresos",
@@ -562,7 +515,7 @@ $modal_2=array("facturas","Crear Factura");
 					fill: true,
 					borderWidth: 1,
 
-					data: [<?php echo $ing; ?>]
+					data: [<?php echo $ing_cont; ?>]
 
 				} ]
 			},
