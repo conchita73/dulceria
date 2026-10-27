@@ -53,8 +53,7 @@ $id_imagenes_productos = isset($id) ? $id : time();
 												echo '<form id="'.$form.$edt.'_form" method="post">
 			 											
 			 											<input type="hidden" name="tabla_'.$tbl.'" value="'.$table.'">
-			 											<input type="hidden" name="accion" value="'.$accion.'">
-			 											<input type="hidden" name="es_popup" value="1">';
+			 											<input type="hidden" name="accion" value="'.$accion.'">';
 
 			 									if(isset($id)){
 
@@ -104,7 +103,7 @@ $id_imagenes_productos = isset($id) ? $id : time();
 			$('#btn_form<?php echo $edt ?>').click(function(e){
 
 				// esta variable es para que no se evaluen las fotos si es edicion
-				$('#<?php echo $form.$edt ?>_form').form_validator_ajax({url: 'functions/ajax.php'});
+				$('#<?php echo $form.$edt ?>_form').form_validator_ajax({url: 'functions/ajax.php?es_popup=1'});
 
 
 			});
