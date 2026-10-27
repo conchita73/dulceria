@@ -608,13 +608,23 @@ $_cont_sql_errors = ob_get_clean();
 		} // end initContabilidadChart
 
 		// Iniciar gráfico al mostrar la pestaña Contabilidad
-		$('#pills-profile-tab').on('shown.bs.tab', function() {
-			initContabilidadChart();
+		// Escuchamos en el documento para mayor compatibilidad con Bootstrap pills
+		$(document).on('shown.bs.tab', '[data-toggle="pill"], [data-toggle="tab"]', function(e) {
+			if ($(e.target).attr('href') === '#pills-profile') {
+				initContabilidadChart();
+			}
 		});
 
-		// Si la pestaña ya está activa al cargar (poco probable pero posible)
+		// Fallback via click con timeout (por si shown.bs.tab no llega)
+		$(document).on('click', '[href="#pills-profile"]', function() {
+			setTimeout(function() {
+				initContabilidadChart();
+			}, 350);
+		});
+
+		// Si la pestaña ya está activa al cargar
 		if ($('#pills-profile-tab').hasClass('active')) {
-			initContabilidadChart();
+			setTimeout(initContabilidadChart, 50);
 		}
 
 
