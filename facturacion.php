@@ -678,12 +678,12 @@ $_cont_sql_errors = ob_get_clean();
 
 		});
 
-		$("#albaranes_cobrados_span").html("<?php echo number_format(($tbody_facturas['total_ingresos']),2,'.','')?>");
-        $("#albaranes_pendientes_span").html("<?php echo number_format(($tbody_facturas['total_gastos']),2,'.','')?>");
+		$("#albaranes_cobrados_span").html("<?php echo number_format(($tbody_facturas['total_ingresos'] ?? 0),2,'.','')?>");
+        $("#albaranes_pendientes_span").html("<?php echo number_format(($tbody_facturas['total_gastos'] ?? 0),2,'.','')?>");
 
-        $("#movimientos_ventas_span").html("<?php echo number_format(($tbody_movimientos['total_ingresos']),2,'.','')?>");
-        $("#movimientos_compras_span").html("<?php echo number_format(($tbody_movimientos['totales']),2,'.','')?>");
-        $("#movimientos_gastos_span").html("<?php echo number_format(($tbody_movimientos['total_gastos']),2,'.','')?>");
+        $("#movimientos_ventas_span").html("<?php echo number_format(($tbody_movimientos['total_ingresos'] ?? 0),2,'.','')?>");
+        $("#movimientos_compras_span").html("<?php echo number_format(($tbody_movimientos['totales'] ?? 0),2,'.','')?>");
+        $("#movimientos_gastos_span").html("<?php echo number_format(($tbody_movimientos['total_gastos'] ?? 0),2,'.','')?>");
 
 		// $('#fecha_editar').parent('div').remove();			
 
