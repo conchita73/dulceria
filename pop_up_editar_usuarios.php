@@ -191,6 +191,7 @@ $title_heading="Usuarios";
 
 
 
+            var _usuario_enviando = false;
             $('#crear_usuario').click(function(){
 
              	var modulos = '[';
@@ -203,7 +204,7 @@ $title_heading="Usuarios";
 				    	if(b>1){ modulos+= ','; }
 
 				        modulos+= $(this).val();
-				        
+
 				    }
 				});
 
@@ -215,8 +216,19 @@ $title_heading="Usuarios";
 
 				}else{
 
+					// evitar doble envío
+					if(_usuario_enviando) return;
+					_usuario_enviando = true;
+					var $btn = $(this);
+					var textoOriginal = $btn.find('b').text();
+					$btn.prop('disabled', true).find('b').text('Guardando...');
+					setTimeout(function(){
+						_usuario_enviando = false;
+						$btn.prop('disabled', false).find('b').text(textoOriginal);
+					}, 3000);
+
 					$('[name^="arr_permisos"]').val(modulos);
-					$('#usuario_admin_form').form_validator_ajax();
+					$('#usuario_admin_form').form_validator_ajax({url: 'functions/ajax.php?es_popup=1'});
 
 				}
 
