@@ -431,7 +431,23 @@ $_cont_sql_errors = ob_get_clean();
 
 			});
             
-		var htmlLegendsChart = document.getElementById('htmlLegendsChart').getContext('2d');
+		var myHtmlLegendsChart = null;
+
+		function initContabilidadChart() {
+			if (myHtmlLegendsChart) return;
+
+			var legendClickCallback = function(e) {
+				var index = e.currentTarget.index;
+				if (myHtmlLegendsChart.isDatasetVisible(index)) {
+					myHtmlLegendsChart.hide(index);
+					e.currentTarget.classList.add('hidden');
+				} else {
+					myHtmlLegendsChart.show(index);
+					e.currentTarget.classList.remove('hidden');
+				}
+			};
+
+			var htmlLegendsChart = document.getElementById('htmlLegendsChart').getContext('2d');
 		// Chart with HTML Legends
 
 		var gradientStroke = htmlLegendsChart.createLinearGradient(500, 0, 100, 0);
@@ -589,6 +605,17 @@ $_cont_sql_errors = ob_get_clean();
 			legendItems[i].addEventListener("click", legendClickCallback, false);
 		}
 
+		} // end initContabilidadChart
+
+		// Iniciar gráfico al mostrar la pestaña Contabilidad
+		$('#pills-profile-tab').on('shown.bs.tab', function() {
+			initContabilidadChart();
+		});
+
+		// Si la pestaña ya está activa al cargar (poco probable pero posible)
+		if ($('#pills-profile-tab').hasClass('active')) {
+			initContabilidadChart();
+		}
 
 
         $.widget("custom.catcomplete",$.ui.autocomplete,
