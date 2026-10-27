@@ -194,7 +194,8 @@ $_cont_sql_errors = ob_get_clean();
 															<?php
 
 
-														 		$tbody_movimientos =  pintar_tbody('movimientos_bancarios',$modal_1,' where fecha >= "'.date("Y-m-d",strtotime(date("Y-m-d")."- 1 month")).' 00:00:00"');
+														 		$tbody_movimientos = pintar_tbody('movimientos_bancarios',$modal_1,' where fecha >= "'.date("Y-m-d",strtotime(date("Y-m-d")."- 1 month")).' 00:00:00"');
+																if (!is_array($tbody_movimientos)) $tbody_movimientos = ['body'=>'','totales'=>0,'total_ingresos'=>0,'total_gastos'=>0];
 																echo $tbody_movimientos['body'];
 			 
 															?>
@@ -284,6 +285,7 @@ $_cont_sql_errors = ob_get_clean();
 															<?php
 
 														 		$tbody_facturas = pintar_tbody('facturas',$modal_2,' where fecha_cobro >= "'.date("Y-m-d",strtotime(date("Y-m-d")."- 1 month")).' 00:00:00"');
+																if (!is_array($tbody_facturas)) $tbody_facturas = ['body'=>'','totales'=>0,'total_ingresos'=>0,'total_gastos'=>0];
 																echo $tbody_facturas['body'];
 
 			 
