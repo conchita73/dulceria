@@ -80,6 +80,8 @@ $modal_1=array("clientes","Crear Cliente");
 
 															$t_body_clientes = pintar_tbody('clientes',$modal_1,' es_recurrente=1');
 
+															echo '<pre style="background:#fffbe6;border:2px solid orange;padding:8px"><b>DEBUG clientes:</b> type='.gettype($t_body_clientes).' | IP='.$_SERVER['REMOTE_ADDR'].' | r='.($t_body_clientes[r] ?? 'n/a').'</pre>';
+
 															if(is_string($t_body_clientes)){
 																echo '<div class="alert alert-danger">Error tabla clientes: '.htmlspecialchars($t_body_clientes).'</div>';
 															} else {
