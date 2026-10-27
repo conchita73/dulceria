@@ -300,11 +300,12 @@ class DataAccess {
         $this->query=mysqli_query($this->link,$sql);
         $this->errorQuery=mysqli_error($this->link);
 
-        if($_SERVER['REMOTE_ADDR']=='5.154.69.122' || $_SERVER['REMOTE_ADDR']=='::1' || $_SERVER['REMOTE_ADDR']=='185.178.136.16'){
+        $debug_ips = ['5.154.69.122','::1','185.178.136.16','127.0.0.1'];
+        if(in_array($_SERVER['REMOTE_ADDR'], $debug_ips)){
 
             if($this->errorQuery!=''){
-                echo "<br> El error MySQL es -> " . $this->errorQuery;
-                echo "<br> La Query es -> " . $sql;
+                echo "<br><b style='color:red'>Error MySQL:</b> " . $this->errorQuery;
+                echo "<br><b>Query:</b> " . $sql;
             }
 
         }
