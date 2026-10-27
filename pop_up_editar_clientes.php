@@ -100,11 +100,26 @@ $id_imagenes_productos = isset($id) ? $id : time();
 	<script>
 
 					// fotos_producto productos_form_form
+			var _popup_enviando = false;
 			$('#btn_form<?php echo $edt ?>').click(function(e){
+
+				// evitar doble envío si el usuario pulsa dos veces
+				if(_popup_enviando) return;
+				_popup_enviando = true;
+				var $btn = $(this);
+				var textoOriginal = $btn.find('b').text();
+				$btn.prop('disabled', true).find('b').text('Guardando...');
 
 				// esta variable es para que no se evaluen las fotos si es edicion
 				$('#<?php echo $form.$edt ?>_form').form_validator_ajax({url: 'functions/ajax.php?es_popup=1'});
 
+				// Si la validación falla (alert síncrono) o el AJAX devuelve error,
+				// reactivamos el botón tras 3 s para que el usuario pueda reintentar.
+				// Si el AJAX tuvo éxito, el popup se cerrará antes de que se cumpla el timer.
+				setTimeout(function(){
+					_popup_enviando = false;
+					$btn.prop('disabled', false).find('b').text(textoOriginal);
+				}, 3000);
 
 			});
 
