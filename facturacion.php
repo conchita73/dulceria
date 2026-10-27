@@ -435,6 +435,8 @@ $modal_2=array("facturas","Crear Factura");
                                 'Dic'=>12,
                             );
 
+                        $year = date('Y'); // año por defecto para carga inicial; el filtro por año usa AJAX
+
                         $ing = '';
                         $gas = '';
                         $ben = '';
