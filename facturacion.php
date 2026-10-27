@@ -448,6 +448,7 @@ $modal_2=array("facturas","Crear Factura");
 						$beneficio_total=0;
 						$compras_total=0;
 
+                        ob_start(); // evita que errores MySQL de query() se inyecten en el JS
                         foreach ($meses as $key => $value) {
 
                         	# sacamos los ingresos
@@ -497,10 +498,11 @@ $modal_2=array("facturas","Crear Factura");
                             // }
 
                         } // foreach ($meses as $key => $value) {
+                        $sql_debug_cont = ob_get_clean();
                     ?>
 
-        <?php if(in_array($_SERVER['REMOTE_ADDR'],['::1','127.0.0.1'])): ?>
-        /* DEBUG-CONT: year=<?php echo $year ?> ing=<?php echo $ing ?> gas=<?php echo $gas ?> comp=<?php echo $comp ?> ing_total=<?php echo $ingreso_total ?> */
+        <?php if(in_array($_SERVER['REMOTE_ADDR'],['::1','127.0.0.1']) && $sql_debug_cont): ?>
+        /* DEBUG-CONT MySQL errors: <?php echo addslashes(strip_tags($sql_debug_cont)) ?> */
         <?php endif; ?>
 
         $('#ing_final').html('<?php echo number_format(((int)$ingreso_total/100),2,'.','') ?>');
