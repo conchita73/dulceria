@@ -2504,21 +2504,11 @@ function pintar_tbody($nombre,$modal,$where=""){
 
                     $resultado=$DB->inner_join($datos_query,$t['tabla_inner'],$t['on_inner'].$where);
 
-                    // DEBUG LOCALHOST
-                    if(isset($_SERVER['REMOTE_ADDR']) && in_array($_SERVER['REMOTE_ADDR'],['::1','127.0.0.1'])){
-                        echo '<pre style="background:#fffbe6;border:1px solid #f90;padding:6px;font-size:11px">[DEBUG inner_join] FROM '.$t['tabla_inner'].' ON '.$t['on_inner'].$where.' → '.$resultado[r].' filas</pre>';
-                    }
-
-                }else if(isset($t['tabla_inner']) && $t['tabla_inner']==0 || !isset($t['tabla_inner'])){
+                }else{
 
                     $where_query = $where!='' ? $where : (isset($t['where_query']) && $t['where_query']!="" ? $t['where_query'] : 'id>0');
                   
                     $resultado=$DB->select($datos_query,$t['tabla_body'],$where_query);
-
-                    // DEBUG LOCALHOST
-                    if(isset($_SERVER['REMOTE_ADDR']) && in_array($_SERVER['REMOTE_ADDR'],['::1','127.0.0.1'])){
-                        echo '<pre style="background:#fffbe6;border:1px solid #f90;padding:6px;font-size:11px">[DEBUG select] SELECT '.$datos_query.' FROM '.$t['tabla_body'].' WHERE '.$where_query.' → '.$resultado[r].' filas</pre>';
-                    }
 
                 } // if($t['tabla_inner']!=""){
 
