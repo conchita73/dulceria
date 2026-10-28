@@ -23,13 +23,16 @@ if (!class_exists('HTML2PDF')) {
          * Alias en mayúsculas de output() para mantener compatibilidad
          * con el código que llama $html2pdf->Output(...)
          */
-        public function Output(string $name = 'document.pdf', string $dest = 'I'): string
+        // PHP: Output y output son el mismo método (case-insensitive).
+        // Usamos parent::output() para delegar al padre sin recursión infinita.
+        // Sin tipos declarados para ser compatible con la firma del padre (sin tipos).
+        public function Output($name = 'document.pdf', $dest = 'I')
         {
             // La librería spipu requiere extensión .pdf en el nombre
             if (strtolower(substr($name, -4)) !== '.pdf') {
                 $name .= '.pdf';
             }
-            return $this->output($name, $dest);
+            return parent::output($name, $dest);
         }
     }
 }

@@ -1,6 +1,11 @@
 <?php @session_start();
 date_default_timezone_set('Europe/Madrid');
-error_reporting(E_ALL);
+error_reporting(E_ALL & ~E_DEPRECATED);
+
+// PHP 8.2: utf8_encode / utf8_decode están deprecated (se eliminarán en PHP 9).
+// Estos shims mantienen el mismo comportamiento (ISO-8859-1 ↔ UTF-8) sin warnings.
+function compat_compat_utf8_encode($s) { return mb_convert_encoding((string)$s, 'UTF-8', 'ISO-8859-1'); }
+function compat_compat_utf8_decode($s) { return mb_convert_encoding((string)$s, 'ISO-8859-1', 'UTF-8'); }
     include("funciones.php");
 
     // DEFINIMOS LA SALIDA QUE VAMOS A TENER.
@@ -80,7 +85,7 @@ error_reporting(E_ALL);
                                                     <div style="width:100%;>
                                                         <img src="https://'.$delegacion['web'].'/dulceria/img/logo_documentacion.png" height="100px;" alt="">
                                                         <br><br>
-                                                        <b>'.utf8_encode($delegacion['gerente']).'</b><br>
+                                                        <b>'.compat_utf8_encode($delegacion['gerente']).'</b><br>
                                                         CIF : '.$delegacion['cif'].'<br>
                                                         '.$delegacion['direccion'].'  <br>
                                                         '.$delegacion['cp'].' '.$delegacion['poblacion'].' <br>
@@ -123,7 +128,7 @@ error_reporting(E_ALL);
 
                                                                     if($datos[$key] != '' && $datos[$key] != '0'){
 
-                                                                        $content.='<b>'.$value.':</b> '.utf8_encode($datos[$key]).' <br>';
+                                                                        $content.='<b>'.$value.':</b> '.compat_utf8_encode($datos[$key]).' <br>';
                                                                     }
                                                                 }
 
@@ -201,7 +206,7 @@ error_reporting(E_ALL);
 
                                             }else if($datos['id_pedido'] == 0){
 
-                                                $conceptos = json_decode(utf8_encode($datos['concepto']),true,JSON_UNESCAPED_UNICODE);
+                                                $conceptos = json_decode(compat_utf8_encode($datos['concepto']),true,JSON_UNESCAPED_UNICODE);
 
                                                 for ($i=1; $i <= count($conceptos) ; $i++) { 
                                                 
@@ -233,7 +238,7 @@ error_reporting(E_ALL);
 
                                             }else if($datos['id_pedido'] > 0){
 
-                                                $conceptos = json_decode(utf8_encode($datos['concepto']),true,JSON_UNESCAPED_UNICODE);
+                                                $conceptos = json_decode(compat_utf8_encode($datos['concepto']),true,JSON_UNESCAPED_UNICODE);
 
                                                 for ($i=0; $i <= count($conceptos) ; $i++) { 
                                                 
@@ -248,7 +253,7 @@ error_reporting(E_ALL);
                                                              border: 1px grey solid;
                                                              padding:5px;                
                                                              "> 
-                                                            '.strtoupper(utf8_decode($conceptos[$i]['nombre'])).'
+                                                            '.strtoupper(compat_utf8_decode($conceptos[$i]['nombre'])).'
                                                             
                                                              </td>
                                                              <td style="width: 10%; 
@@ -372,7 +377,7 @@ error_reporting(E_ALL);
                                                     <div style="width:100%;>
                                                         <img src="https://'.$delegacion['web'].'/dulceria/img/logo_documentacion.png" height="100px;" alt="">
                                                         <br><br>
-                                                        <b>'.utf8_encode($delegacion['gerente']).'</b><br>
+                                                        <b>'.compat_utf8_encode($delegacion['gerente']).'</b><br>
                                                         CIF : '.$delegacion['cif'].'<br>
                                                         '.$delegacion['direccion'].'  <br>
                                                         '.$delegacion['cp'].' '.$delegacion['poblacion'].' <br>
@@ -415,7 +420,7 @@ error_reporting(E_ALL);
 
                                                                     if($datos[$key] != '' && $datos[$key] != '0'){
 
-                                                                        $content.='<b>'.$value.':</b> '.utf8_encode($datos[$key]).' <br>';
+                                                                        $content.='<b>'.$value.':</b> '.compat_utf8_encode($datos[$key]).' <br>';
                                                                     }
                                                                 }
 
@@ -451,7 +456,7 @@ error_reporting(E_ALL);
 
                                             $importe_total = 0;
 
-                                            $conceptos = json_decode(utf8_encode($datos['concepto']),true,JSON_UNESCAPED_UNICODE);
+                                            $conceptos = json_decode(compat_utf8_encode($datos['concepto']),true,JSON_UNESCAPED_UNICODE);
 
                                             if($datos['agrupado'] == 1){
 
@@ -500,7 +505,7 @@ error_reporting(E_ALL);
                                                              border: 1px grey solid;
                                                              padding:5px;                
                                                              "> 
-                                                            '.strtoupper(utf8_decode($conceptos[$i]['nombre'])).'
+                                                            '.strtoupper(compat_utf8_decode($conceptos[$i]['nombre'])).'
                                                             
                                                              </td>
                                                              <td style="width: 10%; 
@@ -672,7 +677,7 @@ error_reporting(E_ALL);
                                                     <div style="width:100%;>
                                                         <img src="https://'.$delegacion['web'].'/dulceria/img/logo_documentacion.png" height="100px;" alt="">
                                                         <br><br>
-                                                        <b>'.utf8_encode($delegacion['gerente']).'</b><br>
+                                                        <b>'.compat_utf8_encode($delegacion['gerente']).'</b><br>
                                                         CIF : '.$delegacion['cif'].'<br>
                                                         '.$delegacion['direccion'].'  <br>
                                                         '.$delegacion['cp'].' '.$delegacion['poblacion'].' <br>
@@ -712,7 +717,7 @@ error_reporting(E_ALL);
 
                                                                     if($datos[$key] != '' && $datos[$key] != '0'){
 
-                                                                        $content.='<b>'.$value.':</b> '.utf8_encode($datos[$key]).' <br>';
+                                                                        $content.='<b>'.$value.':</b> '.compat_utf8_encode($datos[$key]).' <br>';
                                                                     }
                                                                 }
 
@@ -748,7 +753,7 @@ error_reporting(E_ALL);
 
                                             $importe_total = 0;
 
-                                            $conceptos = json_decode(utf8_encode($datos['concepto']),true,JSON_UNESCAPED_UNICODE);
+                                            $conceptos = json_decode(compat_utf8_encode($datos['concepto']),true,JSON_UNESCAPED_UNICODE);
 
                                             if($datos['id_pedido'] == 0){
 
@@ -795,7 +800,7 @@ error_reporting(E_ALL);
                                                              border: 1px grey solid;
                                                              padding:5px;                
                                                              "> 
-                                                            '.strtoupper(utf8_decode($conceptos[$i]['nombre'])).'
+                                                            '.strtoupper(compat_utf8_decode($conceptos[$i]['nombre'])).'
                                                             
                                                              </td>
                                                              <td style="width: 10%; 
