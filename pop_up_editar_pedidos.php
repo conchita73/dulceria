@@ -3,7 +3,9 @@ $title_heading="Editar Pedido";
 
 // Guardia: $id es obligatorio en este popup (solo edición)
 // Sin este check, una SQL vacía ("id=") lanza mysqli_sql_exception en PHP 8.1+
-if (!isset($id) || $id === '' || !ctype_digit(strval($id)) || intval($id) <= 0) {
+// Guardia: $id es obligatorio y debe ser numérico (0 incluido; lo gestiona la comprobación de registro más abajo)
+// Sin este check, una SQL vacía ("id=") lanza mysqli_sql_exception en PHP 8.1+
+if (!isset($id) || $id === '' || !ctype_digit(strval($id))) {
     die('<div style="font-family:sans-serif;padding:30px;color:#c0392b"><h2>Error: falta el ID del pedido</h2><p>Cierra esta ventana y vuelve a hacer clic en "Editar Pedido".</p></div>');
 }
 $id = intval($id);
