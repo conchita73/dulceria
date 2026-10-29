@@ -2879,13 +2879,15 @@ function pintar_tbody($nombre,$modal,$where=""){
 
                                             }
 
-                                            $table['body'].= '<button type="button" title="" 
-                                                class="btn btn-round btn-icon mr-1 btn-info"
-                                                name="editar_pop_up"
-                                                tabla="'.$tb.'"
-                                                id="'.$idp.'">
-                                                <i class="fa fa-edit" data-toggle="tooltip" data-original-title="Editar"></i>
-                                               </button>';
+                                            if($idp > 0){
+                                                $table['body'].= '<button type="button" title=""
+                                                    class="btn btn-round btn-icon mr-1 btn-info"
+                                                    name="editar_pop_up"
+                                                    tabla="'.$tb.'"
+                                                    id="'.$idp.'">
+                                                    <i class="fa fa-edit" data-toggle="tooltip" data-original-title="Editar"></i>
+                                                   </button>';
+                                            }
 
                                         }else{
 

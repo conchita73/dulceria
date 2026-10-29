@@ -31,7 +31,7 @@ $cliente = $DB->select('*','clientes','id='.$p['id_cliente']);
 $c = $cliente[f][0];
 
 $factura = $DB->select('id','facturas','id_pedido='.$id);
-$id_factura = $factura[f][0]['id'];
+$id_factura = isset($factura[f][0]['id']) ? intval($factura[f][0]['id']) : 0;
 
 ?>
 <!DOCTYPE html>

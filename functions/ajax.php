@@ -3320,48 +3320,56 @@ if($tabla_editar!="formulario_modal"){
     $DB->update();
 
 
-    # editamos la facturta 
-    $DB->openTable('facturas');
-    $DB->edit($id_factura);
-    $DB->ta['importe'] = $importe_final_editar*100;
-    $DB->ta['fecha_cobro'] = formatear_fecha($fecha_entrega,i,m);
-    $DB->ta['descuento'] = $descuento;
-        
-    if($pedido_cobrado == 'Si' && $facturar == 1){
+    # editamos la factura (solo si existe una ligada al pedido)
+    if($id_factura > 0){
 
-        $DB->ta['estado'] = 1;
-        $DB->ta['fecha_cobrada'] = now(); 
+        $DB->openTable('facturas');
+        $DB->edit($id_factura);
+        $DB->ta['importe'] = $importe_final_editar*100;
+        $DB->ta['fecha_cobro'] = formatear_fecha($fecha_entrega,i,m);
+        $DB->ta['descuento'] = $descuento;
 
-        $n = $DB2->select('contador,prefijo','contadores','id=1');
-        $cont = $n[f][0]['contador']+1;
-        $DB2->query('update contadores set contador = '.$cont.' where id = 1');
-        $DB->ta['numero'] = $n[f][0]['prefijo'].'-'.$cont;
+        if($pedido_cobrado == 'Si' && $facturar == 1){
+
+            $DB->ta['estado'] = 1;
+            $DB->ta['fecha_cobrada'] = now();
+
+            $n = $DB2->select('contador,prefijo','contadores','id=1');
+            $cont = $n[f][0]['contador']+1;
+            $DB2->query('update contadores set contador = '.$cont.' where id = 1');
+            $DB->ta['numero'] = $n[f][0]['prefijo'].'-'.$cont;
+
+        }
+
+        if($tarta != '' && $producto == ''){
+
+            $DB->ta['concepto'] = json_encode($tarta, JSON_UNESCAPED_UNICODE);
+
+        }else if($tarta == '' && $producto != ''){
+
+            $DB->ta['concepto'] = json_encode($producto, JSON_UNESCAPED_UNICODE);
+
+        }else if($tarta != '' && $producto != ''){
+
+            $concept = array_merge($tarta,$producto);
+            $DB->ta['concepto'] = json_encode($concept, JSON_UNESCAPED_UNICODE);
+
+        }
+
+        $DB->update();
 
     }
-
-    if($tarta != '' && $producto == ''){
-
-        $DB->ta['concepto'] = json_encode($tarta, JSON_UNESCAPED_UNICODE);
-
-    }else if($tarta == '' && $producto != ''){
-
-        $DB->ta['concepto'] = json_encode($producto, JSON_UNESCAPED_UNICODE);
-
-    }else if($tarta != '' && $producto != ''){
-
-        $concept = array_merge($tarta,$producto);
-        $DB->ta['concepto'] = json_encode($concept, JSON_UNESCAPED_UNICODE);
-
-    }
-
-    $DB->update();
 
     notify('Pedido y albaran modificado','success');
 
-    if(!isset($_SESSION['ip_admin'])){
+    // Cerrar popup y recargar padre para todos excepto IPs de admin de producción.
+    // Nota: no se usa $_SESSION['ip_admin'] porque inc_start.php lo activa también
+    // para localhost, lo que impedía que se cerrase el popup en desarrollo.
+    $ip_admin_produccion = ($_SERVER['REMOTE_ADDR']=="5.154.69.122" || $_SERVER['REMOTE_ADDR']=="185.178.136.16");
+    if(!$ip_admin_produccion){
 
         script('opener.location.reload(); window.close();');
-                
+
     }
 
 
