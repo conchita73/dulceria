@@ -1,8 +1,19 @@
-<?php include 'inc/inc_start.php';  
+<?php include 'inc/inc_start.php';
 $title_heading="Editar Pedido";
 
+// Guardia: $id es obligatorio en este popup (solo edición)
+// Sin este check, una SQL vacía ("id=") lanza mysqli_sql_exception en PHP 8.1+
+if (!isset($id) || $id === '' || !ctype_digit(strval($id)) || intval($id) <= 0) {
+    die('<div style="font-family:sans-serif;padding:30px;color:#c0392b"><h2>Error: falta el ID del pedido</h2><p>Cierra esta ventana y vuelve a hacer clic en "Editar Pedido".</p></div>');
+}
+$id = intval($id);
+
 $pedido = $DB->select('*','pedidos','id='.$id);
-$p = $pedido[f][0];
+$p = isset($pedido[f][0]) ? $pedido[f][0] : null;
+
+if ($p === null) {
+    die('<div style="font-family:sans-serif;padding:30px;color:#c0392b"><h2>Error: pedido no encontrado</h2><p>No existe ningún pedido con ID '.$id.'. Cierra esta ventana.</p></div>');
+}
 
 if($p['descuento']>0){
 
