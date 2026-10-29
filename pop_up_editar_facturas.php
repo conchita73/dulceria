@@ -1,7 +1,16 @@
-<?php include 'inc/inc_start.php';  
+<?php include 'inc/inc_start.php';
 $title_heading="Gestionar Facturas";
 
 $alante = isset($id) ? '' : 'd-none';
+
+// En modo edición, cargamos los datos actuales de la factura para pre-rellenar el formulario
+$factura_edit_data = [];
+if(isset($id)){
+    $fq = $DB->select('fecha_cobro,estado,descuento,importe','facturas','id='.intval($id));
+    if(isset($fq[f][0])){
+        $factura_edit_data = $fq[f][0];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -380,21 +389,22 @@ $alante = isset($id) ? '' : 'd-none';
 												<input type="hidden" name="id_delegacion" value="<?php echo $_SESSION['id_delegacion'] ?>">
 												<input type="hidden" id="accion" name="accion" value="<?php echo $accion ?>">
 												<input type="hidden" name="<?php echo $t ?>" value="facturas">
-												<input type="hidden" name="importe_final" id="importe_final" value="0">
+												<input type="hidden" name="importe_final" id="importe_final" value="<?php echo isset($factura_edit_data['importe']) ? number_format($factura_edit_data['importe']/100, 2, '.', '') : 0 ?>">
+												<?php if(isset($id)){ ?><input type="hidden" name="id_factura_edit" id="id_factura_edit" value="<?php echo intval($id) ?>"><?php } ?>
                         						<div class="form-group">
 	                        						<div class="col-xs-6 has-info">
 									                
 									                <label class="mt-2">Fecha de la factura:</label>
-									                <input type="text" class="form-control" name="fecha_cobro" id="fecha_cobro" value="<?php echo date('d/m/Y'); ?>" placeholder="Fecha de la factura" value="" verify="1">
+									                <input type="text" class="form-control" name="fecha_cobro" id="fecha_cobro" value="<?php echo (isset($factura_edit_data['fecha_cobro']) && $factura_edit_data['fecha_cobro']) ? date('d/m/Y', strtotime($factura_edit_data['fecha_cobro'])) : date('d/m/Y') ?>" placeholder="Fecha de la factura" verify="1">
 									                </div>
 									                <div class="col-xs-6 has-info">
-									                
-									                <label class="mt-2">¿Esta cobrada? :</label><br><select verify="1" name="estado" id="estado" class="custom-select form-control"><option value="1">Si</option><option value="0">No</option></select>
-									                </div>	
+
+									                <label class="mt-2">¿Esta cobrada? :</label><br><select verify="1" name="estado" id="estado" class="custom-select form-control"><option value="1"<?php echo (isset($factura_edit_data['estado']) && $factura_edit_data['estado'] == 1) ? ' selected' : '' ?>>Si</option><option value="0"<?php echo (isset($factura_edit_data['estado']) && $factura_edit_data['estado'] == 0 && array_key_exists('estado',$factura_edit_data)) ? ' selected' : '' ?>>No</option></select>
+									                </div>
 									                <label class="mt-2">Descuento (Se aplicará al crear la factura):</label><br>
-									                <input type="text" class="form-control" name="descuento"  placeholder="Descuento" value="" verify="1" value="0">
-									                </div>											
-													<h3 class="text-right mt-2 text-success">Importe factura: <span id="pvp_span" name="pvp_span">0</span>&euro;</h3>
+									                <input type="text" class="form-control" name="descuento" placeholder="Descuento" value="<?php echo isset($factura_edit_data['descuento']) ? $factura_edit_data['descuento'] : 0 ?>" verify="1">
+									                </div>
+													<h3 class="text-right mt-2 text-success">Importe factura: <span id="pvp_span" name="pvp_span"><?php echo isset($factura_edit_data['importe']) ? number_format($factura_edit_data['importe']/100, 2, '.', '') : 0 ?></span>&euro;</h3>
 													<button type="button" class="mt-3 btn btn-warning float-right ml-auto" id="crear_factura">
 				                                		<b>Crear Factura</b> 
 				                            		</button> 
@@ -776,6 +786,7 @@ $alante = isset($id) ? '' : 'd-none';
 
 				            <?php echo $t ?>: "facturas",
 				            accion : $('[name="accion"]').val(),
+				            id_editar : $('#id_factura_edit').val(),
 				            id_via_cobro : $('[name="id_via_cobro"]').val(),
 				            id_usuario : $('[name="id_usuario"]').val(),
 				            fecha_cobro : $('[name="fecha_cobro"]').val(),

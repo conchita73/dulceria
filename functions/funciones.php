@@ -2872,10 +2872,18 @@ function pintar_tbody($nombre,$modal,$where=""){
 
                                                 $tb = 'facturas_agrupadas';
                                                 $idp = $resultado[f][$x]['id'];
-                                            }else{
 
+                                            }else if($resultado[f][$x]['id_pedido'] > 0){
+
+                                                // Factura ligada a un pedido: editar el pedido
                                                 $tb = 'pedidos';
                                                 $idp = $resultado[f][$x]['id_pedido'];
+
+                                            }else{
+
+                                                // Factura standalone (sin pedido): editar la factura directamente
+                                                $tb = 'facturas';
+                                                $idp = $resultado[f][$x]['id'];
 
                                             }
 
