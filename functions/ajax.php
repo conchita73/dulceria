@@ -1901,7 +1901,13 @@ if($tabla_editar!="formulario_modal"){
             $table = $table['body'];
             $clean   = array("\r\n", "\n", "\r","\t","\0","\x0B");
             $table=str_replace($clean, '',$table);
-            $table=str_replace('"', "'", $table);
+            // Escapamos el HTML para embeber de forma segura en un string JS con comillas dobles:
+            // 1) Backslash primero para no doblar escapes
+            // 2) Comillas dobles -> \" (para no cerrar el string JS)
+            // 3) Comillas simples -> \' (por si hay apóstrofes en nombres de clientes)
+            $table=str_replace('\\', '\\\\', $table);
+            $table=str_replace('"', '\\"', $table);
+            $table=str_replace("'", "\\'", $table);
 
             script('
                     $("#resultado_'.$tabla.'").removeClass("d-none");
