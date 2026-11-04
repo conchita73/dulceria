@@ -1,8 +1,10 @@
-<?php @session_start();
+<?php
+// Buffer de salida: evita que warnings/notices del vendor corrompan el binario PDF
+ob_start();
+@session_start();
 date_default_timezone_set('Europe/Madrid');
-// PHP 8.2: utf8_encode/decode están deprecated pero siguen funcionando hasta PHP 9.
-// Suprimimos E_DEPRECATED para que los warnings no corrompan el binario PDF.
-error_reporting(E_ALL & ~E_DEPRECATED);
+// Suprimimos DEPRECATED y WARNING del vendor para que no contaminen la salida PDF
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_WARNING & ~E_NOTICE);
     include("funciones.php");
 
     // DEFINIMOS LA SALIDA QUE VAMOS A TENER.
@@ -928,6 +930,8 @@ error_reporting(E_ALL & ~E_DEPRECATED);
         $html2pdf->setDefaultFont('Arial');
         $html2pdf->pdf->SetDisplayMode('fullpage');
         $html2pdf->writeHTML($content, isset($_GET['vuehtml']));
+        // Limpiamos cualquier output previo (warnings del vendor) antes de enviar el PDF
+        ob_end_clean();
         $html2pdf->Output($nombre_archivo.'.pdf');
     }
     catch(HTML2PDF_exception $e) {
