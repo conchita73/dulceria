@@ -1901,17 +1901,12 @@ if($tabla_editar!="formulario_modal"){
             $table = $table['body'];
             $clean   = array("\r\n", "\n", "\r","\t","\0","\x0B");
             $table=str_replace($clean, '',$table);
-            // Escapamos el HTML para embeber de forma segura en un string JS con comillas dobles:
-            // 1) Backslash primero para no doblar escapes
-            // 2) Comillas dobles -> \" (para no cerrar el string JS)
-            // 3) Comillas simples -> \' (por si hay apóstrofes en nombres de clientes)
-            $table=str_replace('\\', '\\\\', $table);
-            $table=str_replace('"', '\\"', $table);
-            $table=str_replace("'", "\\'", $table);
+            // json_encode produce un string JS válido y seguro con toda la codificación necesaria
+            $table_json = json_encode($table, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
 
             script('
                     $("#resultado_'.$tabla.'").removeClass("d-none");
-                    $("#resultado_'.$tabla.'").html("'.$table.'");
+                    $("#resultado_'.$tabla.'").html('.$table_json.');
                     $("#ultimas_'.$tabla.'").addClass("d-none");
                     $(".datatable").dataTable();
                     '.$extras);
