@@ -601,7 +601,7 @@ $modal_1=array("delegaciones","Crear una Pastelería");
 			});
 
 
-			$('#confirmar_pedido').click(function(e){
+			$('[id="confirmar_pedido"]').click(function(e){
 
 				// comprobamos que el precio no este a 0 y que esten todos los datos
 				if($('[name="importe_final"]').val() == 0){
