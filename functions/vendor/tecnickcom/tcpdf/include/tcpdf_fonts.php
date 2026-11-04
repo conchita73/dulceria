@@ -1664,6 +1664,13 @@ class TCPDF_FONTS {
 	 * @public static
 	 */
 	public static function unichr($c, $unicode=true) {
+		// PHP 8: chr() requires int; guard against empty string / non-numeric values
+		if (!is_int($c)) {
+			if (!is_numeric($c) || $c === '') {
+				return '';
+			}
+			$c = (int)$c;
+		}
 		if (!$unicode) {
 			return chr($c);
 		} elseif ($c <= 0x7F) {
