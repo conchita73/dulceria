@@ -398,8 +398,8 @@ $deuda = $d[f][0]['deuda']!='' && $d[f][0]['deuda']>0 ? $d[f][0]['deuda'] : 0;
 
 
 
-            $("#albaranes_cobrados_span").html("<?php echo number_format(($tbody_facturas['total_ingresos']),2,'.','')?>");
-            $("#albaranes_pendientes_span").html("<?php echo number_format(($tbody_facturas['total_gastos']),2,'.','')?>");
+            $("#albaranes_cobrados_span").html("<?php echo number_format(($tbody_facturas['total_ingresos'] ?? 0),2,'.','')?>");
+            $("#albaranes_pendientes_span").html("<?php echo number_format(($tbody_facturas['total_gastos'] ?? 0),2,'.','')?>");
 
             $('input[type="text"]').keydown(function(){
               $(this).css({ "background-color" : "white" });
