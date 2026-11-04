@@ -193,7 +193,7 @@ $year = !isset($year) ? date('Y') : $year;
 
 	function alert($mensaje){
 
-		echo "<script>alert('".$mensaje."')</script>";
+		echo "<script>alert('".addslashes($mensaje)."')</script>";
 
 		// eof alert()
 	}
@@ -3748,7 +3748,7 @@ function body_email($tipo,$datos_cliente,$id_web,$textos=""){
                 var state = '".$type."';
                 var content = {};
 
-                content.message = '".$txt."';
+                content.message = '".addslashes($txt)."';
                 content.icon = '".$icon."';
 
                 $.notify(content,{
@@ -3773,7 +3773,7 @@ function body_email($tipo,$datos_cliente,$id_web,$textos=""){
                 var state = '".$type."';
                 var content = {};
 
-                content.message = '".$txt."';
+                content.message = '".addslashes($txt)."';
                 content.icon = '".$icon."';
 
                 $.notify(content,{
@@ -3798,7 +3798,7 @@ function body_email($tipo,$datos_cliente,$id_web,$textos=""){
                 var state = '".$type."';
                 var content = {};
 
-                content.message = '".$txt."';
+                content.message = '".addslashes($txt)."';
                 content.icon = '".$icon."';
 
                 $.notify(content,{
