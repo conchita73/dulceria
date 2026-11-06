@@ -24,13 +24,16 @@
 							 	$DB->query('SELECT * FROM modulos order by orden');
 							  	while($d = $DB->fetch()){
 							 		
-							 		if($_SESSION['Authenticated']==1 || in_array($d['id'],$_SESSION['arr_permisos']) && $d['estado'] == 1){
+							 		// Mostrar módulo si: es superadmin, es IP de admin (localhost), o el módulo está en sus permisos y activo
+							 		$es_superadmin = isset($_SESSION['superadmin']) && $_SESSION['superadmin'] == 1;
+							 		$es_ip_admin   = isset($_SESSION['ip_admin']) && $_SESSION['ip_admin'] == 1;
+							 		$tiene_permiso = is_array($_SESSION['arr_permisos']) && in_array($d['id'], $_SESSION['arr_permisos']) && $d['estado'] == 1;
 
-							 			if($d['nombre'] != 'Agenda' || $d['nombre'] == 'Agenda' && $_SESSION['id_usuario'] == 1)
+							 		if($es_superadmin || $es_ip_admin || $tiene_permiso){
 
+							 			if($d['nombre'] != 'Agenda' || ($d['nombre'] == 'Agenda' && isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] == 1)){
 
-											$url = $d['url'] == '#' ? '#' : HOME_PATH.'/'.$d['url'].'.php';
-
+							 				$url = $d['url'] == '#' ? '#' : HOME_PATH.'/'.$d['url'].'.php';
 
 							 				echo '<li class="nav-item">
 											    <a href="'.$url.'">  
@@ -38,15 +41,16 @@
 											    	<span class="sub-item">'.ucwords(utf8_encode($d['nombre'])).'</span>';
 
 											if($d['nombre'] == 'Agenda'){
-
 											 	echo '<span class="badge badge-success d-none" id="badge-menu">0</span>';
 											}
-
 
 											echo '
 											    </a>
 											   </li>';
-									}
+
+							 			} // if nombre != Agenda
+
+							 		} // if tiene permiso
 
 							  	}
 
