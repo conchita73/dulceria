@@ -605,10 +605,9 @@ if(isset($formulario_contacto_modal) || isset($formulario_encargo_modal)){
                 } // if($DB2->rows() > 0){
 
                 // # inserto el producto
-                $id_insert = $DB->insert(1); 
+                $id_insert = $DB->insert(1);
 
                 alert('Producto creado correctamente');
-                location(0);
                 $no_insert = 1;
 
             break; // productos_web

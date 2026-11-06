@@ -201,7 +201,7 @@ $id_imagenes_productos = isset($id) ? $id : time();
 						b++;
 					});
 					
-					$('#<?php echo $form.$edt ?>_form').form_validator_ajax();
+					$('#<?php echo $form.$edt ?>_form').form_validator_ajax({url: 'functions/ajax.php?es_popup=1'});
 				}
 				
 			});	
