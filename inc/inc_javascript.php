@@ -313,20 +313,8 @@
                 }).then((Delete) => {
 
                     if (Delete) {
-
-                        swal.close(); // cerrar el modal antes del AJAX (SweetAlert queda en loading si no)
-
-                        $.post('/dulceria/functions/ajax.php',
-                            {
-                                log_out_admin: 1,
-
-                        },
-                        function(data) {
-
-                        $('#respuesta_ajax_js').html(data);
-
-                        });
-
+                        swal.close();
+                        window.location.href = '/dulceria/logout.php';
                     } else {
                         swal.close();
                     }
