@@ -445,13 +445,15 @@ $tabla="difusion";
 	<?php 
 
 		// $no_data_table = 1;
-		include 'inc/inc_javascript.php'; 
+		include 'inc/inc_javascript.php';
 
 		if(isset($modal_1) && $modal_1[0]!=""){
             pintar_modal_json($modal_1[0],i,$tabla);
             pintar_modal_json($modal_1[0],u,$tabla);
-            pintar_modal_json("borrar_registro",d,$tabla);
         }
+
+        // El modal de borrar siempre es necesario (hay botones de borrar en campanas_puntuales)
+        pintar_modal_json("borrar_registro",d,$tabla);
 
 	?>
 
