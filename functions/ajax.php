@@ -1130,7 +1130,8 @@ if($tabla_editar!="formulario_modal"){
                     $DB->ta['fotos'] = json_encode($arr_nf);
 
                 }else if($set[$x]!="sin_reload" && $set[$x]!="sin_reload_zona_privada" && $set[$x]!=""
-                        && $set[$x]!="notify" && $set[$x]!="noty" && $set[$x]!="panel_gestionar_tarea"){
+                        && $set[$x]!="notify" && $set[$x]!="noty" && $set[$x]!="panel_gestionar_tarea"
+                        && $set[$x]!="es_popup"){
 
                     if(isset($sin_reload_zona_privada)){
                         $_SESSION[$set[$x].'_zona_privada']=$update[$x];

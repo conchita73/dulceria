@@ -324,10 +324,10 @@ $id_imagenes_productos = isset($id) ? $id : time();
 						});
 					
 						var serialice = $(forms).serialize();	
-						$.post('functions/ajax.php?'+serialice ,
+						$.post('functions/ajax.php?'+serialice+'&es_popup=1' ,
 									    {
 									        accion : 'u'
-									    }, 
+									    },
 									    function(data){
 									        $('#respuesta_ajax_js').html(data);
 										}
