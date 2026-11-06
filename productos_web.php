@@ -139,6 +139,55 @@ $modal_1=array("familias_form","Crear Familia");
 
 			});
 
+			$(document).ready(function(){
+
+				// Fix Bug: borrar producto no hacía nada
+				// El modal borrar_registro tiene tabla_eliminar='familias' por defecto ($tabla en productos_web.php).
+				// En lugar de depender del override JS + modal compartido, usamos SweetAlert directo
+				// solo para los botones de borrar de la pestaña Productos (#home).
+
+				// Quitamos data-toggle para que Bootstrap no abra el modal compartido de borrar_registro
+				$('#home button[name="delete"]').removeAttr('data-toggle').removeAttr('data-target');
+
+				$(document).on('click', '#home button[name="delete"]', function(e){
+
+					e.stopImmediatePropagation();
+					e.preventDefault();
+
+					var id = $(this).attr('id');
+					var tabla = $(this).attr('tabla_eliminar') || 'productos_web';
+
+					swal({
+						title: '¿Borrar producto?',
+						text: '¿Seguro que quieres borrar este producto?',
+						type: 'warning',
+						buttons:{
+							confirm: {
+								text: 'Sí, borrar',
+								className: 'btn btn-danger'
+							},
+							cancel: {
+								visible: true,
+								text: 'Cancelar',
+								className: 'btn btn-secondary'
+							}
+						}
+					}).then(function(confirmar){
+						if(confirmar){
+							$.post('functions/ajax.php', {
+								borrar_registro: 1,
+								id_eliminar: id,
+								tabla_eliminar: tabla
+							}, function(data){
+								$('#respuesta_ajax_js').html(data);
+							});
+						}
+					});
+
+				}); // eof $(document).on('click', '#home button[name="delete"]', ...)
+
+			}); // eof $(document).ready()
+
 			
 
 			// $('#productos_table').DataTable({
