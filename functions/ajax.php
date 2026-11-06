@@ -235,7 +235,7 @@ if(isset($formulario_contacto_modal) || isset($formulario_encargo_modal)){
 }else if(isset($logear_usuario_inicio)){
 
 
-    $DB->query('select id,nombre,password,id_nivel,id_delegacion,estado,arr_permisos from usuarios where login like "'.$usr.'"');
+    $DB->query('select id,nombre,password,id_nivel,id_delegacion,estado,arr_permisos,superadmin from usuarios where login like "'.$usr.'"');
 
 
         if($DB->rows()==0){
