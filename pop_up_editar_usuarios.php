@@ -124,7 +124,8 @@ $title_heading="Usuarios";
 																	data-off="No"
 																	name="modulo"';
 
-													if(isset($permisos) && in_array($d['id'],$permisos) || isset($e['id_nivel']) && $e['id_nivel'] == 1){
+													// Solo marcar si el módulo está explícitamente en arr_permisos del usuario
+													if(isset($permisos) && in_array($d['id'],$permisos)){
 
 														echo 'checked';
 
