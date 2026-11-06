@@ -147,7 +147,7 @@ $edt = isset($id) ? '_editar' : '';
 
 				}else{
 
-					$.post('functions/ajax.php' ,
+					$.post('functions/ajax.php?es_popup=1' ,
 					            {
 					                accion : 'i',
 					                tabla_insertar : 'ofertas_puntuales',

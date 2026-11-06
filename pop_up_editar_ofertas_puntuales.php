@@ -159,7 +159,7 @@ $dnr = $dc['tipo'] == 'regalo' ? '' : 'd-none';
 
 				}else{
 
-					$.post('functions/ajax.php' ,
+					$.post('functions/ajax.php?es_popup=1' ,
 					            {
 					                accion : 'u',
 					                tabla_editar : 'ofertas_puntuales',
