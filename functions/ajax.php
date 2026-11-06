@@ -256,11 +256,12 @@ if(isset($formulario_contacto_modal) || isset($formulario_encargo_modal)){
 
                 }else if(password_verify($pwd,$datos_login_inicio['password'])){
 
-                    $_SESSION['Authenticated']=$datos_login_inicio['id_nivel'];  
+                    $_SESSION['Authenticated']=$datos_login_inicio['id_nivel'];
                     $_SESSION['nombre_usuario']=$datos_login_inicio['nombre'];
                     $_SESSION['id_usuario']=$datos_login_inicio['id'];
                     $_SESSION['id_delegacion']=$_SESSION['id_web']=$datos_login_inicio['id_delegacion'];
                     $_SESSION['arr_permisos'] = json_decode($datos_login_inicio['arr_permisos'],true);
+                    $_SESSION['superadmin'] = !empty($datos_login_inicio['superadmin']) ? 1 : 0;
 
                     script("location.href='/dulceria/panel.php'");
 

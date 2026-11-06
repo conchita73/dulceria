@@ -5,14 +5,7 @@
     
 
 
-    if(isset($_COOKIE['soy_pedro'])){
-
-        setcookie("soy_pedro", 1, time()+864000*365,"/");
-        $_SESSION["soy_pedro"]=1;
-
-    }
-
-    // IPs con acceso de administrador: IPs de producción + localhost para desarrollo
+    // IPs con acceso directo (localhost para desarrollo): autentican sin login
     $ips_admin = ['185.178.136.1', '85.137.97.179', '::1', '127.0.0.1'];
 
     if(in_array($_SERVER['REMOTE_ADDR'], $ips_admin)){

@@ -51,7 +51,7 @@
 							  	}
 
 
-								if(isset($_SESSION['ip_admin'])){
+								if(isset($_SESSION['superadmin']) && $_SESSION['superadmin'] == 1){
 
 								
 								
