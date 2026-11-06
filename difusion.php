@@ -420,7 +420,7 @@ $tabla="difusion";
 														<div id="ultimas_control_envios">
 															<?php
 
-																$control_envios = pintar_tbody('control_envios',$modal_1);
+																$control_envios = pintar_tbody('control_envios','');
 			 													echo $control_envios['body'];
 
 															?>
