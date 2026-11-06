@@ -1,6 +1,7 @@
-<?php include 'inc/inc_start.php';  
+<?php include 'inc/inc_start.php';
 $title_heading="Campañas Puntuales";
-$table = 'colores';
+$table = 'ofertas_puntuales';
+$form  = 'campanas_puntuales';
 $fb = isset($id) ? 'Modificar' : 'Crear';
 $edt = isset($id) ? '_editar' : '';
 
