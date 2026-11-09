@@ -385,7 +385,7 @@ if(isset($accion) && $accion==i){
                  // 
             if($key == 'repetir' && $value == 1){
 
-                if($_SERVER['HTTP_REFERER'] != SITE_URL.'/dulceria/agenda.php'){
+                if($_SERVER['HTTP_REFERER'] != SITE_URL.'.APP_PATH.'/agenda.php'){
 
                     echo "
                         $('#div_repetir_editar').removeClass('d-none');
@@ -399,7 +399,7 @@ if(isset($accion) && $accion==i){
 
             }else if($key == 'repetir' && $value == 0){
 
-                if($_SERVER['HTTP_REFERER'] != SITE_URL.'/dulceria/agenda.php'){
+                if($_SERVER['HTTP_REFERER'] != SITE_URL.'.APP_PATH.'/agenda.php'){
 
                     echo "
                         $('#div_repetir_editar').addClass('d-none');
@@ -420,7 +420,7 @@ if(isset($accion) && $accion==i){
             if($key == 'finaliza' && $value == 1){
 
                 
-                if($_SERVER['HTTP_REFERER'] != SITE_URL.'/dulceria/agenda.php'){
+                if($_SERVER['HTTP_REFERER'] != SITE_URL.'.APP_PATH.'/agenda.php'){
 
                     echo "
                         $('#div_finaliza_editar').removeClass('d-none');
@@ -437,7 +437,7 @@ if(isset($accion) && $accion==i){
             }else if($key == 'finaliza' && $value == 0){
 
                
-                if($_SERVER['HTTP_REFERER'] != SITE_URL.'/dulceria/agenda.php'){
+                if($_SERVER['HTTP_REFERER'] != SITE_URL.'.APP_PATH.'/agenda.php'){
 
                     echo "
                         $('#div_finaliza_editar').addClass('d-none');
@@ -533,7 +533,7 @@ if(isset($accion) && $accion==i){
 
         $DB2->query('delete from tareas where id_tarea_recurrente = '.$id_tarea_recurrente_editar);
 
-        $url_cURL="https://".$_SERVER['HTTP_HOST']."/dulceria/functions/ajax_agenda.php";
+        $url_cURL="https://".$_SERVER['HTTP_HOST'].".APP_PATH."/functions/ajax_agenda.php";
         $post_cURL=array(
                     "accion"=>i,
                     "tabla_insertar"=>"tareas",
@@ -553,7 +553,7 @@ if(isset($accion) && $accion==i){
                     'autocompletar' => $autocompletar_editar
                             );
 
-        if($_SERVER['HTTP_REFERER'] != SITE_URL.'/dulceria/agenda.php'){
+        if($_SERVER['HTTP_REFERER'] != SITE_URL.'.APP_PATH.'/agenda.php'){
             
             $post_cURL['notify'] = 2;
         }

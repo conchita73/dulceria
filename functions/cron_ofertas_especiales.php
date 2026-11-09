@@ -175,7 +175,7 @@ if($DB->rows() > 0){
 
         if($d['foto'] != ''){
 
-            $texto_email.='<b>Foto especial para tí:</b><br><img src="'.SITE_URL.'/dulceria/img/emails/'.($d['foto']).'" alt=""><br>';
+            $texto_email.='<b>Foto especial para tí:</b><br><img src="'.ERP_URL.'/img/emails/'.($d['foto']).'" alt=""><br>';
 
         }
 

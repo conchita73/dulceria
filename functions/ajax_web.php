@@ -3769,7 +3769,7 @@ if(isset($suma_producto_modal)){
         }else{
 
             # avisamos al comercio y cliente
-            $url_cURL="https://".$_SERVER['HTTP_HOST']."/dulceria/functions/ajax.php";
+            $url_cURL="https://".$_SERVER['HTTP_HOST'].".APP_PATH."/functions/ajax.php";
             $post_cURL=array(
                     "enviar_email"=>1,
                     "tabla_enviar"=>"recupera_pass",

@@ -210,7 +210,7 @@
                 var value = $(this).val();
 
 
-                $.post('/dulceria/functions/ajax.php',
+                $.post('.APP_PATH.'/functions/ajax.php',
                 	{
                       	accion: 'u',
                       	id_editar : id_editar,
@@ -314,7 +314,7 @@
 
                     if (Delete) {
                         swal.close();
-                        window.location.href = '/dulceria/logout.php';
+                        window.location.href = '.APP_PATH.'/logout.php';
                     } else {
                         swal.close();
                     }

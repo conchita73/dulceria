@@ -13,7 +13,7 @@
 					        	<h5 class="modal-title">Procesando Solicitud</h5>
 					      	</div> 
 					      	<div class="modal-body text-center" id="mundo_espera">
-						            <img src="/dulceria/img/mundo_reservas.gif" alt="">
+						            <img src=".APP_PATH."/img/mundo_reservas.gif" alt="">
 						            <br>
 						            ¡En breve te daremos la respuesta!
 						           
