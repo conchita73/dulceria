@@ -1448,7 +1448,7 @@ if(!isset($_SESSION['id_pedido'])){
 
 
 				var id_pedido = $(this).attr('id_pedido');
-				window.open('https://pastelerialaargentina.com/dulceria/functions/descargar_documentacion.php?id_pedido='+id_pedido);
+				window.open('/dulceria/functions/descargar_documentacion.php?id_pedido='+id_pedido);
 
 			});
 
@@ -1463,7 +1463,7 @@ if(!isset($_SESSION['id_pedido'])){
 
 				}else{
 
-					window.open('https://pastelerialaargentina.com/dulceria/functions/descargar_pedidos.php?desde='+desde+'&hasta='+hasta, 'Descargar Pedidos');
+					window.open('/dulceria/functions/descargar_pedidos.php?desde='+desde+'&hasta='+hasta, 'Descargar Pedidos');
 
 				}
 
@@ -1509,7 +1509,7 @@ if(!isset($_SESSION['id_pedido'])){
 				var f = $('[name="comanda_input"]').val();
 				var pf = f.split('/');
 				var fecha = pf[2]+'-'+pf[1]+'-'+pf[0];
-				window.open('https://pastelerialaargentina.com/dulceria/functions/descargar_pedidos.php?fecha='+fecha, 'Descargar Pedidos');
+				window.open('/dulceria/functions/descargar_pedidos.php?fecha='+fecha, 'Descargar Pedidos');
 			
 			});
 

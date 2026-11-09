@@ -202,7 +202,7 @@ if(isset($formulario_contacto_modal) || isset($formulario_encargo_modal)){
     // $modal = isset($fecha_contacto) ? 'modal_encargos' : 'modal_contacto';
    // script("$('#".$modal."').modal('hide');");  
         alert('Mensaje Enviado, Gracias por confiar en nosotros');
-        script('location.href="https://pastelerialaargentina.com"');
+        script('location.href=SITE_URL');
 
                 
 //  
@@ -554,7 +554,7 @@ if(isset($formulario_contacto_modal) || isset($formulario_encargo_modal)){
 
                     sleep(1);
                     $_SESSION['id'] = $id_insert;
-                    script('location.href="https://pastelerialaargentina.com/zona_privada.php?bienvenida=1"');
+                    script('location.href=".SITE_URL."zona_privada.php?bienvenida=1"');
                 }
 
             break; // clientes
@@ -3624,7 +3624,7 @@ if($tabla_editar!="formulario_modal"){
             rename($dir.$_FILES['upload']['name'],$dir.$new_name);
             // ftp_rename($conn_id, $_FILES["upload"]["name"], $new_name);
 
-            $imge = 'https://pastelerialaargentina.com/dulceria/img/blog/'.$new_name;
+            $imge = '.SITE_URL.'dulceria/img/blog/'.$new_name;
             list($width, $height, $type, $attr) = getimagesize($imge);
 
             if($width>3000 || $height>3000){
@@ -3701,13 +3701,13 @@ if($tabla_editar!="formulario_modal"){
 
         sleep(1);
         alert('Comentario aprobabado');
-        script('location.href="https://pastelerialaargentina.com"');
+        script('location.href=SITE_URL');
 
     }else{
 
         $DB->query('delete from comentarios_blog where id = '.$id_blog);
         alert('Comentario Borrado');
-        script('location.href="https://pastelerialaargentina.com"');
+        script('location.href=SITE_URL');
     }
 // }else if(isset($moderar_comentario)){ 
 }

@@ -105,7 +105,7 @@ foreach ($arr as $k =>$v) {
                     <br><br>
                     <div style="width:100%; text-align: center;
                             border-bottom:#CCC 1px dotted; padding:10px 0 10px 0">
-                    <a href="https://pastelerialaargentina.com/descargar_cupon/'.$id_cupon.'"
+                    <a href="'.SITE_URL.'/descargar_cupon/'.$id_cupon.'"
                             style="font-family: Playfair Display,serif; border-radius: 1px; font-weight: 600;border-width: 0;
                             padding: 8px 25px; transition: color .5s , border-color .5s , background-color .5s; font-size: 16px;
                             padding: 10px 35px; color: #fff; background-color: #'.$datos['color_email'].';
@@ -128,7 +128,7 @@ foreach ($arr as $k =>$v) {
                           ->create("whatsapp:+34681660826", // to 
                                    array( 
                                        "from" => "whatsapp:+14155238886",       
-                                       "body" => 'Hola '.utf8_decode($nombre).', Desde Pastelerías la Argentina queremos felicitarte por tu '.$felicitacion.' y por ello te hacemos entrega de un cupón de descuento. Esperamos que lo disfrutes https://pastelerialaargentina.com/descargar_cupon/'.$id_cupon.'',
+                                       "body" => 'Hola '.utf8_decode($nombre).', Desde Pastelerías la Argentina queremos felicitarte por tu '.$felicitacion.' y por ello te hacemos entrega de un cupón de descuento. Esperamos que lo disfrutes '.SITE_URL.'/descargar_cupon/'.$id_cupon.'',
                                    ) 
                           ); 
          
@@ -175,7 +175,7 @@ if($DB->rows() > 0){
 
         if($d['foto'] != ''){
 
-            $texto_email.='<b>Foto especial para tí:</b><br><img src="https://pastelerialaargentina.com/dulceria/img/emails/'.($d['foto']).'" alt=""><br>';
+            $texto_email.='<b>Foto especial para tí:</b><br><img src="'.SITE_URL.'/dulceria/img/emails/'.($d['foto']).'" alt=""><br>';
 
         }
 
@@ -184,7 +184,7 @@ if($DB->rows() > 0){
                     <br><br>
                     <div style="width:100%; text-align: center;
                             border-bottom:#CCC 1px dotted; padding:10px 0 10px 0">
-                            <a href="https://pastelerialaargentina.com/descargar_cupon/'.$id_cupon.'"
+                            <a href="'.SITE_URL.'/descargar_cupon/'.$id_cupon.'"
                             style="font-family: Playfair Display,serif; border-radius: 1px; font-weight: 600;border-width: 0;
                             padding: 8px 25px; transition: color .5s , border-color .5s , background-color .5s; font-size: 16px;
                             padding: 10px 35px; color: #fff; background-color: #'.$datos['color_email'].';
@@ -209,7 +209,7 @@ if($DB->rows() > 0){
                           ->create("whatsapp:+34681660826", // to 
                                    array( 
                                        "from" => "whatsapp:+14155238886",       
-                                       "body" => 'Hola '.utf8_encode($d['nombre']).', Desde Pastelerías la Argentina queremos felicitarte de parte de tu '.utf8_encode($d['parentesco']).' '.utf8_encode($name).' por tu '.utf8_encode($d['mensaje_dia']).' y por ello te hacemos entrega de un cupón de descuento. Esperamos que lo disfrutes https://pastelerialaargentina.com/descargar_cupon/'.$id_cupon.'',
+                                       "body" => 'Hola '.utf8_encode($d['nombre']).', Desde Pastelerías la Argentina queremos felicitarte de parte de tu '.utf8_encode($d['parentesco']).' '.utf8_encode($name).' por tu '.utf8_encode($d['mensaje_dia']).' y por ello te hacemos entrega de un cupón de descuento. Esperamos que lo disfrutes '.SITE_URL.'/descargar_cupon/'.$id_cupon.'',
                                    ) 
                           ); 
          
@@ -254,7 +254,7 @@ if($DB->rows() > 0){
                     <br><br>
                     <div style="width:100%; text-align: center;
                             border-bottom:#CCC 1px dotted; padding:10px 0 10px 0">
-                    <a href="https://pastelerialaargentina.com/descargar_cupon/'.$id_cupon.'"
+                    <a href="'.SITE_URL.'/descargar_cupon/'.$id_cupon.'"
                             style="font-family: Playfair Display,serif; border-radius: 1px; font-weight: 600;border-width: 0;
                             padding: 8px 25px; transition: color .5s , border-color .5s , background-color .5s; font-size: 16px;
                             padding: 10px 35px; color: #fff; background-color: #'.$datos['color_email'].';
@@ -293,7 +293,7 @@ if($DB->rows() > 0){
                           ->create("whatsapp:+34681660826", // to 
                                    array( 
                                        "from" => "whatsapp:+14155238886",       
-                                       "body" => 'Hola '.utf8_decode($nombre).', Desde Pastelerías la Argentina queremos felicitarte por '.utf8_encode($d['motivo']).' y por ello te hacemos entrega de un cupón de descuento. Esperamos que lo disfrutes https://pastelerialaargentina.com/descargar_cupon/'.$id_cupon.'',
+                                       "body" => 'Hola '.utf8_decode($nombre).', Desde Pastelerías la Argentina queremos felicitarte por '.utf8_encode($d['motivo']).' y por ello te hacemos entrega de un cupón de descuento. Esperamos que lo disfrutes '.SITE_URL.'/descargar_cupon/'.$id_cupon.'',
                                    ) 
                           ); 
          

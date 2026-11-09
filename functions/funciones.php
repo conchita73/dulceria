@@ -235,12 +235,14 @@ if (file_exists($_config_local)) {
         define('DB_USER', 'root');
         define('DB_PASS', '');
         define('DB_DB',   'dulceria');
+        define('SITE_URL', 'http://localhost');
     } else {
         // ---- PRODUCCION ----
         define('DB_HOST', 'localhost');
         define('DB_USER', 'c199_largentina');
         define('DB_PASS', '***');        // <-- contraseña real de producción
         define('DB_DB',   'c199_largentina');
+        define('SITE_URL', 'https://pastelerialaargentina.es');
     }
 }
 

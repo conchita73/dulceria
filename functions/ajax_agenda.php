@@ -385,7 +385,7 @@ if(isset($accion) && $accion==i){
                  // 
             if($key == 'repetir' && $value == 1){
 
-                if($_SERVER['HTTP_REFERER'] != 'https://pastelerialaargentina.com/dulceria/agenda.php'){
+                if($_SERVER['HTTP_REFERER'] != SITE_URL.'/dulceria/agenda.php'){
 
                     echo "
                         $('#div_repetir_editar').removeClass('d-none');
@@ -399,7 +399,7 @@ if(isset($accion) && $accion==i){
 
             }else if($key == 'repetir' && $value == 0){
 
-                if($_SERVER['HTTP_REFERER'] != 'https://pastelerialaargentina.com/dulceria/agenda.php'){
+                if($_SERVER['HTTP_REFERER'] != SITE_URL.'/dulceria/agenda.php'){
 
                     echo "
                         $('#div_repetir_editar').addClass('d-none');
@@ -420,7 +420,7 @@ if(isset($accion) && $accion==i){
             if($key == 'finaliza' && $value == 1){
 
                 
-                if($_SERVER['HTTP_REFERER'] != 'https://pastelerialaargentina.com/dulceria/agenda.php'){
+                if($_SERVER['HTTP_REFERER'] != SITE_URL.'/dulceria/agenda.php'){
 
                     echo "
                         $('#div_finaliza_editar').removeClass('d-none');
@@ -437,7 +437,7 @@ if(isset($accion) && $accion==i){
             }else if($key == 'finaliza' && $value == 0){
 
                
-                if($_SERVER['HTTP_REFERER'] != 'https://pastelerialaargentina.com/dulceria/agenda.php'){
+                if($_SERVER['HTTP_REFERER'] != SITE_URL.'/dulceria/agenda.php'){
 
                     echo "
                         $('#div_finaliza_editar').addClass('d-none');
@@ -553,7 +553,7 @@ if(isset($accion) && $accion==i){
                     'autocompletar' => $autocompletar_editar
                             );
 
-        if($_SERVER['HTTP_REFERER'] != 'https://pastelerialaargentina.com/dulceria/agenda.php'){
+        if($_SERVER['HTTP_REFERER'] != SITE_URL.'/dulceria/agenda.php'){
             
             $post_cURL['notify'] = 2;
         }
