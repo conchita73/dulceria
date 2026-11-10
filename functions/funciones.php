@@ -223,9 +223,9 @@ $_config_local = __DIR__ . '/config.local.php';
 if (file_exists($_config_local)) {
     require_once $_config_local;   // define DB_HOST, DB_USER, DB_PASS, DB_DB
 } else {
-    $_is_local = (
-        isset($_SERVER['HTTP_HOST']) && in_array($_SERVER['HTTP_HOST'], ['localhost', '127.0.0.1'])
-    );
+    // Local si DOCUMENT_ROOT contiene 'xampp' (XAMPP en Windows)
+    // En producción (Linux/cPanel) la ruta es /var/www/vhosts/...
+    $_is_local = strpos($_SERVER['DOCUMENT_ROOT'] ?? '', 'xampp') !== false;
 
     if ($_is_local) {
         // ---- LOCALHOST / DESARROLLO ----
