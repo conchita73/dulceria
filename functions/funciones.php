@@ -224,9 +224,7 @@ if (file_exists($_config_local)) {
     require_once $_config_local;   // define DB_HOST, DB_USER, DB_PASS, DB_DB
 } else {
     $_is_local = (
-        isset($_SERVER['REMOTE_ADDR']) && in_array($_SERVER['REMOTE_ADDR'], ['::1', '127.0.0.1']) ||
-        php_uname('n') === 'localhost' ||
-        (isset($_SERVER['HTTP_HOST']) && in_array($_SERVER['HTTP_HOST'], ['localhost', '127.0.0.1']))
+        isset($_SERVER['HTTP_HOST']) && in_array($_SERVER['HTTP_HOST'], ['localhost', '127.0.0.1'])
     );
 
     if ($_is_local) {
