@@ -554,7 +554,7 @@ if(isset($formulario_contacto_modal) || isset($formulario_encargo_modal)){
 
                     sleep(1);
                     $_SESSION['id'] = $id_insert;
-                    script('location.href=".SITE_URL."zona_privada.php?bienvenida=1"');
+                    script('location.href="'.SITE_URL.'/zona_privada.php?bienvenida=1"');
                 }
 
             break; // clientes
@@ -3624,7 +3624,7 @@ if($tabla_editar!="formulario_modal"){
             rename($dir.$_FILES['upload']['name'],$dir.$new_name);
             // ftp_rename($conn_id, $_FILES["upload"]["name"], $new_name);
 
-            $imge = '.SITE_URL.'dulceria/img/blog/'.$new_name;
+            $imge = ERP_URL.'/img/blog/'.$new_name;
             list($width, $height, $type, $attr) = getimagesize($imge);
 
             if($width>3000 || $height>3000){
