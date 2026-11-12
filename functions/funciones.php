@@ -240,7 +240,7 @@ if (file_exists($_config_local)) {
         // ---- PRODUCCION ----
         define('DB_HOST', 'localhost');
         define('DB_USER', 'c199_largentina');
-        define('DB_PASS', '***');        // <-- contraseña real de producción
+        define('DB_PASS', 'pepito1234');        // producción
         define('DB_DB',   'c199_largentina');
         define('SITE_URL', 'https://pastelerialaargentina.es');
         define('APP_PATH',  '');

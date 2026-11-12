@@ -417,7 +417,7 @@ if(!isset($_SESSION['id_pedido'])){
 																	<span class="text-success">'.$h_entrega.'</span>
 																	<div class="username"> '.utf8_encode($cliente).'<span class="text-muted"> '.$tel.'</span>
 																	<h3 class="text-muted">
-																	<a href=".APP_PATH."/functions/descargar_pedidos.php?id_pedido='.$d['id'].'" 
+																	<a href="'.APP_PATH.'/functions/descargar_pedidos.php?id_pedido='.$d['id'].'" 
 																			target="_blank"
 																		 	title="">Ver pedido</a></h3>
 																		 	<a href="#" class="mt-2 "
@@ -1448,7 +1448,7 @@ if(!isset($_SESSION['id_pedido'])){
 
 
 				var id_pedido = $(this).attr('id_pedido');
-				window.open('.APP_PATH.'/functions/descargar_documentacion.php?id_pedido='+id_pedido);
+				window.open('<?= APP_PATH ?>/functions/descargar_documentacion.php?id_pedido='+id_pedido);
 
 			});
 
@@ -1463,7 +1463,7 @@ if(!isset($_SESSION['id_pedido'])){
 
 				}else{
 
-					window.open('.APP_PATH.'/functions/descargar_pedidos.php?desde='+desde+'&hasta='+hasta, 'Descargar Pedidos');
+					window.open('<?= APP_PATH ?>/functions/descargar_pedidos.php?desde='+desde+'&hasta='+hasta, 'Descargar Pedidos');
 
 				}
 
@@ -1509,7 +1509,7 @@ if(!isset($_SESSION['id_pedido'])){
 				var f = $('[name="comanda_input"]').val();
 				var pf = f.split('/');
 				var fecha = pf[2]+'-'+pf[1]+'-'+pf[0];
-				window.open('.APP_PATH.'/functions/descargar_pedidos.php?fecha='+fecha, 'Descargar Pedidos');
+				window.open('<?= APP_PATH ?>/functions/descargar_pedidos.php?fecha='+fecha, 'Descargar Pedidos');
 			
 			});
 
@@ -1517,7 +1517,7 @@ if(!isset($_SESSION['id_pedido'])){
 
 				$.ajax({
 			        type: 'POST',
-			        url: '.APP_PATH.'/functions/ajax.php?refresh_panel=1',
+			        url: '<?= APP_PATH ?>/functions/ajax.php?refresh_panel=1',
 				    contentType: 'application/json'
 
 			    }).done(function (r) {
